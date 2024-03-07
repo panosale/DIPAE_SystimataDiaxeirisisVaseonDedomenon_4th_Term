@@ -23,3 +23,11 @@ select * from symmetoxi s join kinimatografos k on s.titlos_tainias = k.titlos_t
 /* Ερώτημα 15 */
 select * from symmetoxi natural join kinimatografos;
 
+/* Ερώτημα 16 */
+/* ??? select distinct titlos from tainia natural join kinimatografos where aithousa = 'TITANIA' or aithousa = 'VILLAGE'; */
+Ή
+/* ??? select distinct titlos, aithousa from tainia natural join kinimatografos where aithousa = 'TITANIA' or aithousa = 'VILLAGE'; */
+
+/* Ερώτημα 17 */
+/* ??? select distinct titlos from tainia natural join kinimatografos where aithousa = 'TITANIA' and evdomades > 8; */
+
