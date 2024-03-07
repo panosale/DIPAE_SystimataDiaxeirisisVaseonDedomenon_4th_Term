@@ -1,0 +1,95 @@
+﻿drop table if exists tainia;
+drop table if exists symmetoxi;
+drop table if exists kinimatografos;
+
+
+create table tainia ( 
+titlos varchar(50) not null constraint p_k_tainia primary key, 
+apoth_video integer, 
+apoth_dvd integer, 
+paragogi varchar(50), 
+t_video integer, 
+t_dvd integer 
+); 
+
+
+
+
+create table symmetoxi ( 
+titlos_tainias varchar(50) not null, 
+eponimo_ithopoiou varchar(50) not null, 
+onoma_ithopoiou varchar(50), 
+constraint p_k_symmetoxi primary key (titlos_tainias, eponimo_ithopoiou) 
+); 
+
+
+create table kinimatografos ( 
+aithousa varchar(50) not null, 
+titlos_tainias varchar(50) not null, 
+evdomades integer, 
+constraint p_k_kinimatografos primary key (aithousa, titlos_tainias) 
+); 
+
+
+
+
+insert into tainia (titlos, apoth_video, apoth_dvd, paragogi, t_video, t_dvd) values ('A night at the opera', 5, 24, 'Fox', 40, 25);
+insert into tainia (titlos, apoth_video, apoth_dvd, paragogi, t_video, t_dvd) values ('Pretty woman', 10, 18, 'TouchStone', 45, 32);
+insert into tainia (titlos, apoth_video, apoth_dvd, paragogi, t_video, t_dvd) values ('Prince of Tides', 5, 10, 'Columbia', 35, 30);
+insert into tainia (titlos, apoth_video, apoth_dvd, paragogi, t_video, t_dvd) values ('The way we were', 15, 20, 'Columbia', 41, 37);
+insert into tainia (titlos, apoth_video, apoth_dvd, paragogi, t_video, t_dvd) values ('American Made', 10, 12, 'Universal', 38, 32);
+insert into tainia (titlos, apoth_video, apoth_dvd, paragogi, t_video, t_dvd) values ('The Godfather', 18, 20, 'Paramaount', 47, 40);
+insert into tainia (titlos, apoth_video, apoth_dvd, paragogi, t_video, t_dvd) values ('Schindler’s List', 28, 19, 'Universal', 50, 42);
+insert into tainia (titlos, apoth_video, apoth_dvd, paragogi, t_video, t_dvd) values ('Apocalypse Now', 8, 8, 'Universal', 47, 34);
+insert into tainia (titlos, apoth_video, apoth_dvd, paragogi, t_video, t_dvd) values ('Blade Runner 2049', 10, 10, 'Columbia', 29, 22);
+
+insert into symmetoxi (titlos_tainias, eponimo_ithopoiou, onoma_ithopoiou) values ('A night at the opera', 'Marx Brothers', '-');
+insert into symmetoxi (titlos_tainias, eponimo_ithopoiou, onoma_ithopoiou) values ('Pretty woman', 'Alexander', 'Jason');
+insert into symmetoxi (titlos_tainias, eponimo_ithopoiou, onoma_ithopoiou) values ('Pretty woman', 'Gere', 'Richard');
+insert into symmetoxi (titlos_tainias, eponimo_ithopoiou, onoma_ithopoiou) values ('Pretty woman', 'Roberts', 'Julia');
+insert into symmetoxi (titlos_tainias, eponimo_ithopoiou, onoma_ithopoiou) values ('Prince of Tides', 'Streisand', 'Barbra');
+insert into symmetoxi (titlos_tainias, eponimo_ithopoiou, onoma_ithopoiou) values ('Prince of Tides', 'Nolte', 'Nick');
+insert into symmetoxi (titlos_tainias, eponimo_ithopoiou, onoma_ithopoiou) values ('Prince of Tides', 'Danner', 'Blythe');
+insert into symmetoxi (titlos_tainias, eponimo_ithopoiou, onoma_ithopoiou) values ('The way we were', 'Redford', 'Robert');
+insert into symmetoxi (titlos_tainias, eponimo_ithopoiou, onoma_ithopoiou) values ('The way we were', 'Dillman', 'Bradford');
+insert into symmetoxi (titlos_tainias, eponimo_ithopoiou, onoma_ithopoiou) values ('The way we were', 'Streisand', 'Barbra');
+insert into symmetoxi (titlos_tainias, eponimo_ithopoiou, onoma_ithopoiou) values ('American Made', 'Cruise', 'Tom');
+insert into symmetoxi (titlos_tainias, eponimo_ithopoiou, onoma_ithopoiou) values ('American Made', 'Wright', 'Sarrah');
+insert into symmetoxi (titlos_tainias, eponimo_ithopoiou, onoma_ithopoiou) values ('American Made', 'Gleeson', 'Domhnall');
+insert into symmetoxi (titlos_tainias, eponimo_ithopoiou, onoma_ithopoiou) values ('The Godfather', 'Brando', 'Marlon');
+insert into symmetoxi (titlos_tainias, eponimo_ithopoiou, onoma_ithopoiou) values ('The Godfather', 'Pacino', 'Al');
+insert into symmetoxi (titlos_tainias, eponimo_ithopoiou, onoma_ithopoiou) values ('The Godfather', 'Can', 'James');
+insert into symmetoxi (titlos_tainias, eponimo_ithopoiou, onoma_ithopoiou) values ('Schindler’s List', 'Neeson', 'Liam');
+insert into symmetoxi (titlos_tainias, eponimo_ithopoiou, onoma_ithopoiou) values ('Schindler’s List', 'Fiennes', 'Ralph');
+insert into symmetoxi (titlos_tainias, eponimo_ithopoiou, onoma_ithopoiou) values ('Schindler’s List', 'Kinglsley', 'Ben');
+insert into symmetoxi (titlos_tainias, eponimo_ithopoiou, onoma_ithopoiou) values ('Apocalypse Now', 'Sheen', 'Martin');
+insert into symmetoxi (titlos_tainias, eponimo_ithopoiou, onoma_ithopoiou) values ('Apocalypse Now', 'Brando', 'Marlon');
+insert into symmetoxi (titlos_tainias, eponimo_ithopoiou, onoma_ithopoiou) values ('Apocalypse Now', 'Duvall', 'Robert');
+
+insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('STER CENTURY', 'A night in the opera', 24);
+insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('STER CENTURY', 'Pretty woman', 35);
+insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('STER CENTURY', 'Prince of Tides', 10);
+insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('STER CENTURY', 'The way we were', 20);
+insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('STER CENTURY', 'American Made', 12);
+insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('STER CENTURY', 'The Godfather', 20);
+insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('VILLAGE', 'Schindler’s List', 5);
+insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('VILLAGE', 'Apocalypse Now', 6);
+insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('VILLAGE', 'Blade Runner 2049', 14);
+insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('VILLAGE', 'A night in the opera', 28);
+insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('VILLAGE', 'Pretty woman', 28);
+insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('VILLAGE', 'Prince of Tides', 15);
+insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('ASSOS ODEON', 'The way we were', 31);
+insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('ASSOS ODEON', 'American Made', 5);
+insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('ASSOS ODEON', 'The Godfather', 35);
+insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('ASSOS ODEON', 'Schindler’s List', 41);
+insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('ASSOS ODEON', 'Apocalypse Now', 22);
+insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('METROPOLITAN', 'Blade Runner 2049', 12);
+insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('METROPOLITAN', 'A night in the opera', 18);
+insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('METROPOLITAN', 'Pretty woman', 16);
+insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('METROPOLITAN', 'Prince of Tides', 5);
+insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('METROPOLITAN', 'The way we were', 17);
+insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('TITANIA', 'American Made', 15);
+insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('TITANIA', 'The Godfather', 36);
+insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('TITANIA', 'Schindler’s List', 3);
+insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('TITANIA', 'Apocalypse Now', 8);
+insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('TITANIA', 'Blade Runner 2049', 7);
