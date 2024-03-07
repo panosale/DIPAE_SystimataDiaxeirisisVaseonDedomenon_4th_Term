@@ -11,5 +11,15 @@ where evdomades > 15;
 select distinct aithousa from kinimatografos
 where titlos_tainias = 'Pretty woman';
 
-/* Ερώτημα 12 */
+/* Ερώτημα 12 - Καρτεσιανό γινόμενο */
 select * from symmetoxi, kinimatografos;
+
+/* Ερώτημα 13 */
+select * from symmetoxi s, kinimatografos k where s.titlos_tainias = k.titlos_tainias;
+
+/* Ερώτημα 14 */
+select * from symmetoxi s join kinimatografos k on s.titlos_tainias = k.titlos_tainias;
+
+/* Ερώτημα 15 */
+select * from symmetoxi natural join kinimatografos;
+
