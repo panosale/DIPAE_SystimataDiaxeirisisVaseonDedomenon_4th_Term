@@ -86,10 +86,18 @@ select distinct s.onoma_ithopoiou, s.eponimo_ithopoiou from symmetoxi s natural 
 where (s.titlos_tainias = t.titlos) and (t.paragogi = 'Columbia');
 
 /* Ερώτημα 24 */
-/* για έλεγχο το παρακάτω */
 select distinct s.onoma_ithopoiou, s.eponimo_ithopoiou from symmetoxi s join kinimatografos k
 on (s.titlos_tainias = k.titlos_tainias) join tainia t on (s.titlos_tainias = t.titlos and t.paragogi = 'Columbia' and k.evdomades > 10);
 /* Ή */
-/* ??? select distinct s.onoma_ithopoiou, s.eponimo_ithopoiou from symmetoxi s natural join tainia t
-where (s.titlos_tainias = t.titlos) and (t.paragogi = 'Columbia'); ??? */
+select distinct s.onoma_ithopoiou, s.eponimo_ithopoiou from symmetoxi s natural join kinimatografos k, tainia t
+where (s.titlos_tainias = k.titlos_tainias)  and (s.titlos_tainias = t.titlos and t.paragogi = 'Columbia' and k.evdomades > 10);
+
+/* Ερώτημα 25 */
+select distinct k.aithousa from kinimatografos k join symmetoxi s
+on (s.titlos_tainias = k.titlos_tainias) and (s.onoma_ithopoiou = 'Richard' and s.eponimo_ithopoiou = 'Gere');
+/* Ή */
+select distinct k.aithousa from kinimatografos k natural join symmetoxi s
+where (s.titlos_tainias = k.titlos_tainias) and (s.onoma_ithopoiou = 'Richard' and s.eponimo_ithopoiou = 'Gere');
+
+
 

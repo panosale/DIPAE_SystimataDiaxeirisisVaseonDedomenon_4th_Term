@@ -66,7 +66,7 @@ insert into symmetoxi (titlos_tainias, eponimo_ithopoiou, onoma_ithopoiou) value
 insert into symmetoxi (titlos_tainias, eponimo_ithopoiou, onoma_ithopoiou) values ('Apocalypse Now', 'Brando', 'Marlon');
 insert into symmetoxi (titlos_tainias, eponimo_ithopoiou, onoma_ithopoiou) values ('Apocalypse Now', 'Duvall', 'Robert');
 
-insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('STER CENTURY', 'A night in the opera', 24);
+insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('STER CENTURY', 'A night at the opera', 24);
 insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('STER CENTURY', 'Pretty woman', 35);
 insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('STER CENTURY', 'Prince of Tides', 10);
 insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('STER CENTURY', 'The way we were', 20);
@@ -75,7 +75,7 @@ insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('STER C
 insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('VILLAGE', 'Schindler’s List', 5);
 insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('VILLAGE', 'Apocalypse Now', 6);
 insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('VILLAGE', 'Blade Runner 2049', 14);
-insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('VILLAGE', 'A night in the opera', 28);
+insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('VILLAGE', 'A night at the opera', 28);
 insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('VILLAGE', 'Pretty woman', 28);
 insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('VILLAGE', 'Prince of Tides', 15);
 insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('ASSOS ODEON', 'The way we were', 31);
@@ -84,7 +84,7 @@ insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('ASSOS 
 insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('ASSOS ODEON', 'Schindler’s List', 41);
 insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('ASSOS ODEON', 'Apocalypse Now', 22);
 insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('METROPOLITAN', 'Blade Runner 2049', 12);
-insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('METROPOLITAN', 'A night in the opera', 18);
+insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('METROPOLITAN', 'A night at the opera', 18);
 insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('METROPOLITAN', 'Pretty woman', 16);
 insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('METROPOLITAN', 'Prince of Tides', 5);
 insert into kinimatografos (aithousa, titlos_tainias, evdomades) values ('METROPOLITAN', 'The way we were', 17);
