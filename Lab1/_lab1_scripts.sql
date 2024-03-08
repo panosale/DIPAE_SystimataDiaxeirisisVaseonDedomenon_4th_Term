@@ -70,3 +70,18 @@ on (k.titlos_tainias = t.titlos) and (k.aithousa = 'STER CENTURY');
 /* Ή */
 select distinct t.titlos, t.paragogi from kinimatografos k natural join tainia t
 where (k.titlos_tainias = t.titlos) and (k.aithousa = 'STER CENTURY');
+
+/* Ερώτημα 22 */
+select distinct s.eponimo_ithopoiou from symmetoxi s join kinimatografos k
+on (s.titlos_tainias = k.titlos_tainias) and (k.evdomades > 10);
+/* Ή */
+select distinct s.eponimo_ithopoiou from symmetoxi s natural join kinimatografos k
+where (s.titlos_tainias = k.titlos_tainias) and (k.evdomades > 10);
+
+/* Ερώτημα 23 */
+select distinct s.onoma_ithopoiou, s.eponimo_ithopoiou from symmetoxi s join tainia t
+on (s.titlos_tainias = t.titlos) and (t.paragogi = 'Columbia');
+/* Ή */
+select distinct s.onoma_ithopoiou, s.eponimo_ithopoiou from symmetoxi s natural join tainia t
+where (s.titlos_tainias = t.titlos) and (t.paragogi = 'Columbia');
+
