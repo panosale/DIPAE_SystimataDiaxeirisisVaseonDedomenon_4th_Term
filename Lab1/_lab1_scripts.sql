@@ -49,3 +49,10 @@ on (k.titlos_tainias = t.titlos) and (k.aithousa = 'TITANIA' or evdomades > 30);
 /* Ή */
 select distinct t.titlos from tainia t natural join kinimatografos k
 where (k.titlos_tainias = t.titlos) and (k.aithousa = 'TITANIA' or evdomades > 30);
+
+/* Ερώτημα 19 */
+select distinct k.aithousa from kinimatografos k join symmetoxi s
+on (k.titlos_tainias = s.titlos_tainias) and ((s.onoma_ithopoiou = 'Robert' and s.eponimo_ithopoiou = 'Redford') and k.evdomades > 10);
+/* Ή */
+select distinct k.aithousa from kinimatografos k natural join symmetoxi s
+where (k.titlos_tainias = s.titlos_tainias) and ((s.onoma_ithopoiou = 'Robert' and s.eponimo_ithopoiou = 'Redford') and k.evdomades > 10);
