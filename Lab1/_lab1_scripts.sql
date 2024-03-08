@@ -56,3 +56,10 @@ on (k.titlos_tainias = s.titlos_tainias) and ((s.onoma_ithopoiou = 'Robert' and 
 /* Ή */
 select distinct k.aithousa from kinimatografos k natural join symmetoxi s
 where (k.titlos_tainias = s.titlos_tainias) and ((s.onoma_ithopoiou = 'Robert' and s.eponimo_ithopoiou = 'Redford') and k.evdomades > 10);
+
+/* Ερώτημα 20 */
+select distinct k.titlos_tainias from kinimatografos k join tainia t
+on (k.titlos_tainias = t.titlos) and (k.aithousa = 'STER CENTURY' and t.t_dvd > 31);
+/* Ή */
+select distinct k.titlos_tainias from kinimatografos k natural join tainia t
+where (k.titlos_tainias = t.titlos) and (k.aithousa = 'STER CENTURY' and t.t_dvd > 31);
