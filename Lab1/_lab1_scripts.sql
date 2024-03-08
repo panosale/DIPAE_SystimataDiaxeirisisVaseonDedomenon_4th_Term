@@ -63,3 +63,10 @@ on (k.titlos_tainias = t.titlos) and (k.aithousa = 'STER CENTURY' and t.t_dvd > 
 /* Ή */
 select distinct k.titlos_tainias from kinimatografos k natural join tainia t
 where (k.titlos_tainias = t.titlos) and (k.aithousa = 'STER CENTURY' and t.t_dvd > 31);
+
+/* Ερώτημα 21 */
+select distinct t.titlos, t.paragogi from kinimatografos k join tainia t
+on (k.titlos_tainias = t.titlos) and (k.aithousa = 'STER CENTURY');
+/* Ή */
+select distinct t.titlos, t.paragogi from kinimatografos k natural join tainia t
+where (k.titlos_tainias = t.titlos) and (k.aithousa = 'STER CENTURY');
