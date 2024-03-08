@@ -85,3 +85,11 @@ on (s.titlos_tainias = t.titlos) and (t.paragogi = 'Columbia');
 select distinct s.onoma_ithopoiou, s.eponimo_ithopoiou from symmetoxi s natural join tainia t
 where (s.titlos_tainias = t.titlos) and (t.paragogi = 'Columbia');
 
+/* Ερώτημα 24 */
+/* για έλεγχο το παρακάτω */
+select distinct s.onoma_ithopoiou, s.eponimo_ithopoiou from symmetoxi s join kinimatografos k
+on (s.titlos_tainias = k.titlos_tainias) join tainia t on (s.titlos_tainias = t.titlos and t.paragogi = 'Columbia' and k.evdomades > 10);
+/* Ή */
+/* ??? select distinct s.onoma_ithopoiou, s.eponimo_ithopoiou from symmetoxi s natural join tainia t
+where (s.titlos_tainias = t.titlos) and (t.paragogi = 'Columbia'); ??? */
+
