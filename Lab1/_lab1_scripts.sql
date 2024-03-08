@@ -40,3 +40,12 @@ on (k.titlos_tainias = t.titlos) and (k.aithousa = 'VILLAGE' and evdomades > 8);
 /* Ή */
 select distinct t.titlos from tainia t natural join kinimatografos k
 where (k.titlos_tainias = t.titlos) and (k.aithousa = 'VILLAGE' and evdomades > 8);
+
+/* Ερώτημα 18 */
+select distinct titlos_tainias from kinimatografos where aithousa = 'TITANIA' or evdomades > 30;
+/* Ή */
+select distinct t.titlos from tainia t join kinimatografos k
+on (k.titlos_tainias = t.titlos) and (k.aithousa = 'TITANIA' or evdomades > 30);
+/* Ή */
+select distinct t.titlos from tainia t natural join kinimatografos k
+where (k.titlos_tainias = t.titlos) and (k.aithousa = 'TITANIA' or evdomades > 30);
