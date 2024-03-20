@@ -1,0 +1,48 @@
+/* Ερώτημα 1 */
+INSERT INTO reservation(sid,bid,mid,r_date) VALUES(13,88,5,'2013-10-19');
+	/* ΕΛΕΓΧΟΣ */
+	select * from reservation where sid = 13; -> Επιστρέφει τη νέα εγγραφή.
+
+/* Ερώτημα 2 */
+INSERT INTO reservation(sid,bid,mid,r_date) VALUES(15,32,33,'2013-10-21');
+	/* ΣΦΑΛΜΑ */
+	ERROR:  Key (bid)=(32) is not present in table "boat".insert or update on table "reservation" violates foreign key constraint "f_key2" 
+	ERROR:  insert or update on table "reservation" violates foreign key constraint "f_key2"
+	SQL state: 23503
+	Detail: Key (bid)=(32) is not present in table "boat".
+	/* ΕΠΕΙΔΗ */
+	Δεν υπάρχει boat με id 32 στον πίνακα boats. Παραβιάζει κανόνα συσχέτισης.
+	/* ΕΛΕΓΧΟΣ */
+	selsect * from boat where bid = 32; -> Δεν επιστρέφει τίποτα
+
+/* Ερώτημα 3 */
+INSERT INTO boat(bid,bname,color) VALUES(32,'Γαλανούλα','Blue');
+	/* ΕΛΕΓΧΟΣ */
+	selsect * from boat where bid = 32; -> Επιστρέφει τη νέα εγγραφή.
+
+/* Ερώτημα  4 */
+INSERT INTO reservation(sid,bid,mid,r_date) VALUES(15,32,33,'2013-10-21');
+	/* ΣΧΟΛΙΑ */
+	Έγινε κανονικά η εισαγωγή αφού πλέον υπάρχει boat με id 32. 
+	/* ΕΛΕΓΧΟΣ */
+	select * from reservation where sid = 15; -> Επιστρέφει τη νέα εγγραφή.
+
+/* Ερώτημα  5 */
+INSERT INTO sailor(sid,sname,rating,age) VALUES (3, 'Φανούρης', 7, 19);
+	/* ΣΦΑΛΜΑ */
+	ERROR:  Failing row contains (3, Φανούρης, 7, 19).new row for relation "sailor" violates check constraint "c_age" 
+	ERROR:  new row for relation "sailor" violates check constraint "c_age"
+	SQL state: 23514
+	Detail: Failing row contains (3, Φανούρης, 7, 19).
+	/* ΕΠΕΙΔΗ */ 
+	Παραβιάζει τον κανόνα της ηλικίας <= 18 ετών.
+	/* ΔΙΟΡΘΩΣΗ */
+	INSERT INTO sailor(sid,sname,rating,age) VALUES (3, 'Φανούρης', 7, 18);
+	/* ΕΛΕΓΧΟΣ */
+	select * from sailor where sid = 3;
+
+/* Ερώτημα  6 */
+UPDATE sailor SET sid = 111 WHERE sid = 1;
+
+
+
