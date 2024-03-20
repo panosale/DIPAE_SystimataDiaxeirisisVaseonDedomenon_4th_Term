@@ -10,8 +10,8 @@ INSERT INTO reservation(sid,bid,mid,r_date) VALUES(15,32,33,'2013-10-21');
 	ERROR:  insert or update on table "reservation" violates foreign key constraint "f_key2"
 	SQL state: 23503
 	Detail: Key (bid)=(32) is not present in table "boat".
-	/* ΕΠΕΙΔΗ */
-	Δεν υπάρχει boat με id 32 στον πίνακα boats. Παραβιάζει κανόνα συσχέτισης.
+		/* ΕΠΕΙΔΗ */
+		Δεν υπάρχει boat με id 32 στον πίνακα boats. Παραβιάζει κανόνα συσχέτισης.
 	/* ΕΛΕΓΧΟΣ */
 	selsect * from boat where bid = 32; -> Δεν επιστρέφει τίποτα
 
@@ -20,51 +20,63 @@ INSERT INTO boat(bid,bname,color) VALUES(32,'Γαλανούλα','Blue');
 	/* ΕΛΕΓΧΟΣ */
 	selsect * from boat where bid = 32; -> Επιστρέφει τη νέα εγγραφή.
 
-/* Ερώτημα  4 */
+/* Ερώτημα 4 */
 INSERT INTO reservation(sid,bid,mid,r_date) VALUES(15,32,33,'2013-10-21');
 	/* ΣΧΟΛΙΑ */
 	Έγινε κανονικά η εισαγωγή αφού πλέον υπάρχει boat με id 32. 
 	/* ΕΛΕΓΧΟΣ */
 	select * from reservation where sid = 15; -> Επιστρέφει τη νέα εγγραφή.
 
-/* Ερώτημα  5 */
+/* Ερώτημα 5 */
 INSERT INTO sailor(sid,sname,rating,age) VALUES (3, 'Φανούρης', 7, 19);
 	/* ΣΦΑΛΜΑ */
 	ERROR:  Failing row contains (3, Φανούρης, 7, 19).new row for relation "sailor" violates check constraint "c_age" 
 	ERROR:  new row for relation "sailor" violates check constraint "c_age"
 	SQL state: 23514
 	Detail: Failing row contains (3, Φανούρης, 7, 19).
-	/* ΕΠΕΙΔΗ */ 
-	Παραβιάζει τον κανόνα της ηλικίας <= 18 ετών.
-	/* ΔΙΟΡΘΩΣΗ */
-	INSERT INTO sailor(sid,sname,rating,age) VALUES (3, 'Φανούρης', 7, 18);
-	/* ΕΛΕΓΧΟΣ */
-	select * from sailor where sid = 3;
+		/* ΕΠΕΙΔΗ */ 
+		Παραβιάζει τον κανόνα της ηλικίας <= 18 ετών.
+		/* ΔΙΟΡΘΩΣΗ */
+		INSERT INTO sailor(sid,sname,rating,age) VALUES (3, 'Φανούρης', 7, 18);
+		/* ΕΛΕΓΧΟΣ */
+		select * from sailor where sid = 3;
 
-/* Ερώτημα  6 */
+/* Ερώτημα 6 */
 UPDATE sailor SET sid = 111 WHERE sid = 1;
 	/* ΕΛΕΓΧΟΣ */
 	select * from sailor where sname = 'Χριστίνα';
 	/* ΣΧΟΛΙΑ */
-	Γίνονται update όλες οι εγγραφές στον πίνανα reservation επειδή η σχέση των πεδίων sid έχει δημιουργηθεί με "on update cascade" ???
+	Γίνονται update όλες οι εγγραφές στον πίνανα reservation επειδή η σχέση f_key1 των πεδίων sid έχει δημιουργηθεί με "on update cascade" ???
 	/* ΕΛΕΓΧΟΣ */
 	select * from reservation where sid = 1; -> Δεν φέρνει πλέον αποτελέσματα
 	select * from reservation where sid = 111; -> Φέρνει τις ενημερωμένες εγγραφές
 	
-/* Ερώτημα  7 */
+/* Ερώτημα 7 */
 DELETE FROM sailor WHERE sid = 111;
 	/* ΕΛΕΓΧΟΣ */
 	select * from sailor where sid = 111;
 	/* ΣΧΟΛΙΑ */
-	Διαγράφει και όλες (7) τις εγγραφές από τον πίνακα reservation επειδή η σχέση των πεδίων sid έχει δημιουργηθεί με "on delete cascade" ???
+	Διαγράφει και όλες (7) τις εγγραφές από τον πίνακα reservation επειδή η σχέση f_key1 των πεδίων sid έχει δημιουργηθεί με "on delete cascade" ???
 	/* ΕΛΕΓΧΟΣ */
 	select * from reservation where sid = 111; -> Δεν φέρνει πλέον κανένα αποτέλεσμα
 
-/* Ερώτημα  8 */
+/* Ερώτημα 8 */
 DELETE FROM reservation WHERE sid = 19;
 	/* ΕΛΕΓΧΟΣ */
 	select * from reservation where sid = 19; -> Δεν επιστρέφει τίποτα
 	/* ΣΧΟΛΙΑ */
 	Δεν γίνεται καμία αλλαγή στους υπόλοιπους πίνακες της ΒΔ. ???
 	select * from sailor where sid = 19;
-	
+
+/* Ερώτημα 9 */
+DELETE FROM boat WHERE color = 'Light Green';
+	/* ΣΦΑΛΜΑ */
+	ERROR:  Key (bid)=(17) is still referenced from table "reservation".update or delete on table "boat" violates foreign key constraint "f_key2" on table "reservation" 
+	ERROR:  update or delete on table "boat" violates foreign key constraint "f_key2" on table "reservation"
+	SQL state: 23503
+	Detail: Key (bid)=(17) is still referenced from table "reservation".
+		/* ΕΠΕΙΔΗ */
+		Η σχέση f_key2 των πεδίων bid έχει δημιουργηθεί με "on delete restrict" ???
+
+/* Ερώτημα 10 */
+
