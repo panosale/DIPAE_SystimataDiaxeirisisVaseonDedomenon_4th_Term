@@ -43,6 +43,15 @@ INSERT INTO sailor(sid,sname,rating,age) VALUES (3, 'Φανούρης', 7, 19);
 
 /* Ερώτημα  6 */
 UPDATE sailor SET sid = 111 WHERE sid = 1;
+	/* ΕΛΕΓΧΟΣ */
+	select * from sailor where sname = 'Χριστίνα';
+	/* ΣΧΟΛΙΑ */
+	Γίνονται update όλες οι εγγραφές στον πίνανα reservation επειδή η σχέση των πεδίων sid έχει δημιουργηθεί με "on update cascade"
+	/* ΕΛΕΓΧΟΣ */
+	select * from reservation where sid = 1; -> Δεν φέρνει πλέον αποτελέσματα
+	select * from reservation where sid = 111; -> Φέρνει τις ενημερωμένες εγγραφές
+	
 
+	
 
 
