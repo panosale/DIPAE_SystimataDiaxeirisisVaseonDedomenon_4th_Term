@@ -46,12 +46,25 @@ UPDATE sailor SET sid = 111 WHERE sid = 1;
 	/* ΕΛΕΓΧΟΣ */
 	select * from sailor where sname = 'Χριστίνα';
 	/* ΣΧΟΛΙΑ */
-	Γίνονται update όλες οι εγγραφές στον πίνανα reservation επειδή η σχέση των πεδίων sid έχει δημιουργηθεί με "on update cascade"
+	Γίνονται update όλες οι εγγραφές στον πίνανα reservation επειδή η σχέση των πεδίων sid έχει δημιουργηθεί με "on update cascade" ???
 	/* ΕΛΕΓΧΟΣ */
 	select * from reservation where sid = 1; -> Δεν φέρνει πλέον αποτελέσματα
 	select * from reservation where sid = 111; -> Φέρνει τις ενημερωμένες εγγραφές
 	
+/* Ερώτημα  7 */
+DELETE FROM sailor WHERE sid = 111;
+	/* ΕΛΕΓΧΟΣ */
+	select * from sailor where sid = 111;
+	/* ΣΧΟΛΙΑ */
+	Διαγράφει και όλες (7) τις εγγραφές από τον πίνακα reservation επειδή η σχέση των πεδίων sid έχει δημιουργηθεί με "on delete cascade" ???
+	/* ΕΛΕΓΧΟΣ */
+	select * from reservation where sid = 111; -> Δεν φέρνει πλέον κανένα αποτέλεσμα
 
+/* Ερώτημα  8 */
+DELETE FROM reservation WHERE sid = 19;
+	/* ΕΛΕΓΧΟΣ */
+	select * from reservation where sid = 19; -> Δεν επιστρέφει τίποτα
+	/* ΣΧΟΛΙΑ */
+	Δεν γίνεται καμία αλλαγή στους υπόλοιπους πίνακες της ΒΔ. ???
+	select * from sailor where sid = 19;
 	
-
-
