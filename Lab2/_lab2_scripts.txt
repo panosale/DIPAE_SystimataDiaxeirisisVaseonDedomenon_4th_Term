@@ -100,7 +100,7 @@ DELETE FROM marina WHERE name = 'Ποσείδι';
 	UPDATE boat SET k_typou = 1 WHERE bid IN (1, 17, 19, 72);
 	UPDATE boat SET k_typou = 2 WHERE bid IN (13, 88);
 
-/* Ερώτημα 12 */
+/* Ερώτημα 14 */
 SELECT capacity FROM marina WHERE name LIKE 'Π%';
 
 
