@@ -114,3 +114,9 @@ EXCEPT
 SELECT s.sid, s.sname FROM sailor s
 	JOIN reservation r on (s.sid = r.sid)
 	JOIN boat b on (b.bid = r.bid) WHERE b.color <> 'Red';
+
+/* Ερώτημα 17 */
+SELECT AVG(rating) FROM sailor;
+
+/* Ερώτημα 18 */
+SELECT SUM(rating) / COUNT(rating) FROM sailor;
