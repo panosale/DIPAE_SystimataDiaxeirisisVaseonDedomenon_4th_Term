@@ -110,6 +110,7 @@ SELECT MIN(capacity) FROM marina WHERE name LIKE 'Π%' AND LENGTH(name) = 7;
 
 /* Ερώτημα 16 */
 SELECT s.sid, s.sname FROM sailor s
+EXCEPT
+SELECT s.sid, s.sname FROM sailor s
 	JOIN reservation r on (s.sid = r.sid)
 	JOIN boat b on (b.bid = r.bid) WHERE b.color <> 'Red';
-	....
