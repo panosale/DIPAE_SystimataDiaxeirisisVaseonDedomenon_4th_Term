@@ -1,3 +1,5 @@
+/* ΓΕΝΙΚΑ - ΝΑ ΜΗ ΧΡΗΣΙΜΟΠΟΙΟΥΜΕ ΤΗ natural join */
+
 /* Ερώτημα 9 */
 select distinct titlos_tainias from symmetoxi
 where (eponimo_ithopoiou = 'Redford' and onoma_ithopoiou = 'Robert')
@@ -29,8 +31,8 @@ select distinct titlos_tainias from kinimatografos where aithousa = 'TITANIA' or
 select distinct t.titlos from tainia t join kinimatografos k 
 on (k.titlos_tainias = t.titlos) and (k.aithousa = 'TITANIA' or k.aithousa = 'VILLAGE');
 /* Ή */
-select distinct t.titlos from tainia t natural join kinimatografos k 
-where (k.titlos_tainias = t.titlos) and (k.aithousa = 'TITANIA' or k.aithousa = 'VILLAGE');
+/* select distinct t.titlos from tainia t natural join kinimatografos k 
+where (k.titlos_tainias = t.titlos) and (k.aithousa = 'TITANIA' or k.aithousa = 'VILLAGE'); */
 
 /* Ερώτημα 17 */
 select distinct titlos_tainias from kinimatografos where aithousa = 'VILLAGE' and evdomades > 8;
@@ -38,8 +40,8 @@ select distinct titlos_tainias from kinimatografos where aithousa = 'VILLAGE' an
 select distinct t.titlos from tainia t join kinimatografos k
 on (k.titlos_tainias = t.titlos) and (k.aithousa = 'VILLAGE' and evdomades > 8);
 /* Ή */
-select distinct t.titlos from tainia t natural join kinimatografos k
-where (k.titlos_tainias = t.titlos) and (k.aithousa = 'VILLAGE' and evdomades > 8);
+/* select distinct t.titlos from tainia t natural join kinimatografos k
+where (k.titlos_tainias = t.titlos) and (k.aithousa = 'VILLAGE' and evdomades > 8); */
 
 /* Ερώτημα 18 */
 select distinct titlos_tainias from kinimatografos where aithousa = 'TITANIA' or evdomades > 30;
@@ -47,58 +49,54 @@ select distinct titlos_tainias from kinimatografos where aithousa = 'TITANIA' or
 select distinct t.titlos from tainia t join kinimatografos k
 on (k.titlos_tainias = t.titlos) and (k.aithousa = 'TITANIA' or evdomades > 30);
 /* Ή */
-select distinct t.titlos from tainia t natural join kinimatografos k
-where (k.titlos_tainias = t.titlos) and (k.aithousa = 'TITANIA' or evdomades > 30);
+/* select distinct t.titlos from tainia t natural join kinimatografos k
+where (k.titlos_tainias = t.titlos) and (k.aithousa = 'TITANIA' or evdomades > 30); */
 
 /* Ερώτημα 19 */
 select distinct k.aithousa from kinimatografos k join symmetoxi s
 on (k.titlos_tainias = s.titlos_tainias) and ((s.onoma_ithopoiou = 'Robert' and s.eponimo_ithopoiou = 'Redford') and k.evdomades > 10);
 /* Ή */
-select distinct k.aithousa from kinimatografos k natural join symmetoxi s
-where (k.titlos_tainias = s.titlos_tainias) and ((s.onoma_ithopoiou = 'Robert' and s.eponimo_ithopoiou = 'Redford') and k.evdomades > 10);
+*/ select distinct k.aithousa from kinimatografos k natural join symmetoxi s
+where (k.titlos_tainias = s.titlos_tainias) and ((s.onoma_ithopoiou = 'Robert' and s.eponimo_ithopoiou = 'Redford') and k.evdomades > 10); */
 
 /* Ερώτημα 20 */
 select distinct k.titlos_tainias from kinimatografos k join tainia t
 on (k.titlos_tainias = t.titlos) and (k.aithousa = 'STER CENTURY' and t.t_dvd > 31);
 /* Ή */
-select distinct k.titlos_tainias from kinimatografos k natural join tainia t
-where (k.titlos_tainias = t.titlos) and (k.aithousa = 'STER CENTURY' and t.t_dvd > 31);
+/* select distinct k.titlos_tainias from kinimatografos k natural join tainia t
+where (k.titlos_tainias = t.titlos) and (k.aithousa = 'STER CENTURY' and t.t_dvd > 31); */
 
 /* Ερώτημα 21 */
 select distinct t.titlos, t.paragogi from kinimatografos k join tainia t
 on (k.titlos_tainias = t.titlos) where (k.aithousa = 'STER CENTURY');
 /* Ή */
-select distinct t.titlos, t.paragogi from kinimatografos k natural join tainia t
-where (k.titlos_tainias = t.titlos) and (k.aithousa = 'STER CENTURY');
-/* ΝΑ ΜΗ ΧΡΗΣΙΜΟΠΟΙΟΥΜΕ ΤΗ natural join */
+/* select distinct t.titlos, t.paragogi from kinimatografos k natural join tainia t
+where (k.titlos_tainias = t.titlos) and (k.aithousa = 'STER CENTURY'); */
 
 /* Ερώτημα 22 */
 select distinct s.eponimo_ithopoiou from symmetoxi s join kinimatografos k
-on (s.titlos_tainias = k.titlos_tainias) and (k.evdomades > 10);
+on (s.titlos_tainias = k.titlos_tainias) where (k.evdomades > 10);
 /* Ή */
-select distinct s.eponimo_ithopoiou from symmetoxi s natural join kinimatografos k
-where (s.titlos_tainias = k.titlos_tainias) and (k.evdomades > 10);
+/* select distinct s.eponimo_ithopoiou from symmetoxi s natural join kinimatografos k
+where (s.titlos_tainias = k.titlos_tainias) and (k.evdomades > 10); */
 
 /* Ερώτημα 23 */
 select distinct s.onoma_ithopoiou, s.eponimo_ithopoiou from symmetoxi s join tainia t
-on (s.titlos_tainias = t.titlos) and (t.paragogi = 'Columbia');
+on (s.titlos_tainias = t.titlos) where (t.paragogi = 'Columbia');
 /* Ή */
-select distinct s.onoma_ithopoiou, s.eponimo_ithopoiou from symmetoxi s natural join tainia t
-where (s.titlos_tainias = t.titlos) and (t.paragogi = 'Columbia');
+/* select distinct s.onoma_ithopoiou, s.eponimo_ithopoiou from symmetoxi s natural join tainia t
+where (s.titlos_tainias = t.titlos) and (t.paragogi = 'Columbia'); */
 
 /* Ερώτημα 24 */
 select distinct s.onoma_ithopoiou, s.eponimo_ithopoiou from symmetoxi s join kinimatografos k
 on (s.titlos_tainias = k.titlos_tainias) join tainia t on (s.titlos_tainias = t.titlos and t.paragogi = 'Columbia' and k.evdomades > 10);
 /* Ή */
-select distinct s.onoma_ithopoiou, s.eponimo_ithopoiou from symmetoxi s natural join kinimatografos k, tainia t
-where (s.titlos_tainias = k.titlos_tainias)  and (s.titlos_tainias = t.titlos and t.paragogi = 'Columbia' and k.evdomades > 10);
+/* select distinct s.onoma_ithopoiou, s.eponimo_ithopoiou from symmetoxi s natural join kinimatografos k, tainia t
+where (s.titlos_tainias = k.titlos_tainias)  and (s.titlos_tainias = t.titlos and t.paragogi = 'Columbia' and k.evdomades > 10); */
 
 /* Ερώτημα 25 */
 select distinct k.aithousa from kinimatografos k join symmetoxi s
 on (s.titlos_tainias = k.titlos_tainias) and (s.onoma_ithopoiou = 'Richard' and s.eponimo_ithopoiou = 'Gere');
 /* Ή */
-select distinct k.aithousa from kinimatografos k natural join symmetoxi s
-where (s.titlos_tainias = k.titlos_tainias) and (s.onoma_ithopoiou = 'Richard' and s.eponimo_ithopoiou = 'Gere');
-
-
-
+/* select distinct k.aithousa from kinimatografos k natural join symmetoxi s
+where (s.titlos_tainias = k.titlos_tainias) and (s.onoma_ithopoiou = 'Richard' and s.eponimo_ithopoiou = 'Gere'); */
