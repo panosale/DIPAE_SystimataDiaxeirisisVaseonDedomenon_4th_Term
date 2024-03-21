@@ -66,10 +66,11 @@ where (k.titlos_tainias = t.titlos) and (k.aithousa = 'STER CENTURY' and t.t_dvd
 
 /* Ερώτημα 21 */
 select distinct t.titlos, t.paragogi from kinimatografos k join tainia t
-on (k.titlos_tainias = t.titlos) and (k.aithousa = 'STER CENTURY');
+on (k.titlos_tainias = t.titlos) where (k.aithousa = 'STER CENTURY');
 /* Ή */
 select distinct t.titlos, t.paragogi from kinimatografos k natural join tainia t
 where (k.titlos_tainias = t.titlos) and (k.aithousa = 'STER CENTURY');
+/* ΝΑ ΜΗ ΧΡΗΣΙΜΟΠΟΙΟΥΜΕ ΤΗ natural join */
 
 /* Ερώτημα 22 */
 select distinct s.eponimo_ithopoiou from symmetoxi s join kinimatografos k
