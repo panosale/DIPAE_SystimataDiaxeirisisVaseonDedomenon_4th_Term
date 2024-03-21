@@ -103,8 +103,9 @@ select distinct s.onoma_ithopoiou, s.eponimo_ithopoiou from symmetoxi s
 where (s.titlos_tainias = k.titlos_tainias)  and (s.titlos_tainias = t.titlos and t.paragogi = 'Columbia' and k.evdomades > 10); */
 
 /* Ερώτημα 25 */
-select distinct k.aithousa from kinimatografos k join symmetoxi s
-on (s.titlos_tainias = k.titlos_tainias) and (s.onoma_ithopoiou = 'Richard' and s.eponimo_ithopoiou = 'Gere');
+select distinct k.aithousa from kinimatografos k 
+	join symmetoxi s on (s.titlos_tainias = k.titlos_tainias) 
+	where (s.onoma_ithopoiou = 'Richard' and s.eponimo_ithopoiou = 'Gere');
 /* Ή */
 /* select distinct k.aithousa from kinimatografos k natural join symmetoxi s
 where (s.titlos_tainias = k.titlos_tainias) and (s.onoma_ithopoiou = 'Richard' and s.eponimo_ithopoiou = 'Gere'); */
