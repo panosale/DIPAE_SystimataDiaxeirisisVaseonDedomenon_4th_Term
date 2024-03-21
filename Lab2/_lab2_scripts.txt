@@ -101,6 +101,15 @@ DELETE FROM marina WHERE name = 'Ποσείδι';
 	UPDATE boat SET k_typou = 2 WHERE bid IN (13, 88);
 
 /* Ερώτημα 14 */
-SELECT capacity FROM marina WHERE name LIKE 'Π%';
+SELECT MAX(capacity) FROM marina WHERE name LIKE 'Π%';
 
+/* Ερώτημα 15 */
+SELECT MIN(capacity) FROM marina WHERE name LIKE 'Π______';
+/* Ή */
+SELECT MIN(capacity) FROM marina WHERE name LIKE 'Π%' AND LENGTH(name) = 7;
 
+/* Ερώτημα 16 */
+SELECT s.sid, s.sname FROM sailor s
+	JOIN reservation r on (s.sid = r.sid)
+	JOIN boat b on (b.bid = r.bid) WHERE b.color <> 'Red';
+	....
