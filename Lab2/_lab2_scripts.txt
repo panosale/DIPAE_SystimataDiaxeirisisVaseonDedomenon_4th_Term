@@ -120,3 +120,6 @@ SELECT AVG(rating) FROM sailor;
 
 /* Ερώτημα 18 */
 SELECT SUM(rating) / COUNT(rating) FROM sailor;
+
+/* Ερώτημα 19 */
+SELECT 1.0 * (SUM(rating) / COUNT(rating)) FROM sailor; /* να ελεγχθεί */
