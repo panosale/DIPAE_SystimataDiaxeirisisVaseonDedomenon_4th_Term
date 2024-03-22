@@ -177,8 +177,17 @@ SELECT DISTINCT B.bname, B.color FROM marina M
 	WHERE NOT (S.rating < 5);
 
 /* Ερώτημα 25 */
+SELECT S.sname AS "Sailor Name", B.bname AS "Boat name" FROM sailor S
+	JOIN reservation R ON (R.sid = S.sid)
+	JOIN boat B ON (B.bid = R.bid)
+	JOIN marina M ON (M.mid = R.mid)
+	WHERE M.name = 'Πόρτο Καρράς';
 
 /* Ερώτημα 26 */
 
 /* Ερώτημα 27 */
+SELECT M.mid AS "Marina ID", M.name, B.color FROM marina M
+	JOIN reservation R ON (R.mid = M.mid)
+	JOIN boat B ON (B.bid = R.bid)
+	WHERE M.name LIKE 'Π%' OR B.color = 'Red';
 
