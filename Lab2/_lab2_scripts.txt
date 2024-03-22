@@ -128,25 +128,21 @@ SELECT 1.0 * (SUM(rating) / COUNT(rating)) FROM sailor; /* να ελεγχθεί
 α)
 SELECT S.sid, S.sname FROM sailor S
 	JOIN reservation R ON (R.sid = S.sid)
-	JOIN boat B ON (B.bid = R.bid)
 	JOIN marina M ON (M.mid = R.mid)
 	WHERE M.name = 'Πόρτο Καρράς';
 β)
 SELECT DISTINCT S.sid, S.sname FROM sailor S
 	JOIN reservation R ON (R.sid = S.sid)
-	JOIN boat B ON (B.bid = R.bid)
 	JOIN marina M ON (M.mid = R.mid)
 	WHERE M.name = 'Ουρανούπολις';
 γ)
 SELECT DISTINCT S.sid, S.sname FROM sailor S
 	JOIN reservation R ON (R.sid = S.sid)
-	JOIN boat B ON (B.bid = R.bid)
 	JOIN marina M ON (M.mid = R.mid)
 	WHERE M.name = 'Πόρτο Καρράς'
-UNION
+INTERSECT
 SELECT DISTINCT S.sid, S.sname FROM sailor S
 	JOIN reservation R ON (R.sid = S.sid)
-	JOIN boat B ON (B.bid = R.bid)
 	JOIN marina M ON (M.mid = R.mid)
 	WHERE M.name = 'Ουρανούπολις';
 
