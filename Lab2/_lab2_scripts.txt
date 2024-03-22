@@ -123,3 +123,62 @@ SELECT SUM(rating) / COUNT(rating) FROM sailor;
 
 /* Ερώτημα 19 */
 SELECT 1.0 * (SUM(rating) / COUNT(rating)) FROM sailor; /* να ελεγχθεί */
+
+/* Ερώτημα 20 */
+α)
+SELECT S.sid, S.sname FROM sailor S
+	JOIN reservation R ON (R.sid = S.sid)
+	JOIN boat B ON (B.bid = R.bid)
+	JOIN marina M ON (M.mid = R.mid)
+	WHERE M.name = 'Πόρτο Καρράς';
+β)
+SELECT DISTINCT S.sid, S.sname FROM sailor S
+	JOIN reservation R ON (R.sid = S.sid)
+	JOIN boat B ON (B.bid = R.bid)
+	JOIN marina M ON (M.mid = R.mid)
+	WHERE M.name = 'Ουρανούπολις';
+γ)
+SELECT DISTINCT S.sid, S.sname FROM sailor S
+	JOIN reservation R ON (R.sid = S.sid)
+	JOIN boat B ON (B.bid = R.bid)
+	JOIN marina M ON (M.mid = R.mid)
+	WHERE M.name = 'Πόρτο Καρράς'
+UNION
+SELECT DISTINCT S.sid, S.sname FROM sailor S
+	JOIN reservation R ON (R.sid = S.sid)
+	JOIN boat B ON (B.bid = R.bid)
+	JOIN marina M ON (M.mid = R.mid)
+	WHERE M.name = 'Ουρανούπολις';
+
+/* Ερώτημα 21 */
+SELECT B.bid, B.bname FROM boat B
+	JOIN reservation R ON (R.bid = B.bid)
+	JOIN sailor S ON (S.sid = R.sid)
+	JOIN marina M ON (M.mid = R.mid)
+	WHERE S.rating = 8 OR M.name = 'Ουρανούπολις';
+
+/* Ερώτημα 22 */
+SELECT DISTINCT M.name FROM marina M
+	JOIN reservation R ON (R.mid = M.mid)
+	JOIN boat B ON (B.bid = R.bid)
+	WHERE B.color = 'Red' AND M.capacity > 200;
+	
+/* Ερώτημα 23 */
+SELECT DISTINCT M.name FROM marina M
+	JOIN reservation R ON (R.mid = M.mid)
+	JOIN boat B ON (B.bid = R.bid)
+	WHERE B.color = 'Red' OR B.color = 'Blue';
+
+/* Ερώτημα 24 */
+SELECT DISTINCT B.bname, B.color FROM marina M
+	JOIN reservation R ON (R.mid = M.mid)
+	JOIN boat B ON (B.bid = R.bid)
+	JOIN sailor S ON (S.sid = R.sid)
+	WHERE NOT (S.rating < 5);
+
+/* Ερώτημα 25 */
+
+/* Ερώτημα 26 */
+
+/* Ερώτημα 27 */
+
