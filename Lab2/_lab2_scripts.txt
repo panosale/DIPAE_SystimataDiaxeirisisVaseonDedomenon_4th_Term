@@ -147,11 +147,21 @@ SELECT DISTINCT S.sid, S.sname FROM sailor S
 	WHERE M.name = 'Ουρανούπολις';
 
 /* Ερώτημα 21 */
-SELECT B.bid, B.bname FROM boat B
+SELECT DISTINCT B.bid, B.bname FROM boat B
 	JOIN reservation R ON (R.bid = B.bid)
 	JOIN sailor S ON (S.sid = R.sid)
 	JOIN marina M ON (M.mid = R.mid)
 	WHERE S.rating = 8 OR M.name = 'Ουρανούπολις';
+/* Ή */
+SELECT B.bid, B.bname FROM boat B
+	JOIN reservation R ON (R.bid = B.bid)
+	JOIN marina M ON (M.mid = R.mid)
+	WHERE M.name = 'Ουρανούπολις';
+UNION
+SELECT B.bid, B.bname FROM boat B
+	JOIN reservation R ON (R.bid = B.bid)
+	JOIN sailor S ON (S.sid = R.sid)
+	WHERE S.rating = 8;
 
 /* Ερώτημα 22 */
 SELECT DISTINCT M.name FROM marina M
