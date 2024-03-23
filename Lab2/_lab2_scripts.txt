@@ -192,8 +192,18 @@ SELECT S.sname AS "Sailor Name", B.bname AS "Boat name" FROM sailor S
 /* Ερώτημα 26 */
 
 /* Ερώτημα 27 */
-SELECT M.mid AS "Marina ID", M.name, B.color FROM marina M
+SELECT DISTINCT M.mid AS "Marina ID", M.name AS "Marina name", B.color AS "Boat color" FROM marina M
 	JOIN reservation R ON (R.mid = M.mid)
 	JOIN boat B ON (B.bid = R.bid)
 	WHERE M.name LIKE 'Π%' OR B.color = 'Red';
+/* Ή */
+SELECT M.mid AS "Marina ID", M.name AS "Marina name", B.color AS "Boat color" FROM marina M
+	JOIN reservation R ON (R.mid = M.mid)
+	JOIN boat B ON (B.bid = R.bid)
+	WHERE M.name LIKE 'Π%'
+UNION
+SELECT M.mid AS "Marina ID", M.name AS "Marina name", B.color AS "Boat color" FROM marina M
+	JOIN reservation R ON (R.mid = M.mid)
+	JOIN boat B ON (B.bid = R.bid)
+	WHERE B.color = 'Red';
 
