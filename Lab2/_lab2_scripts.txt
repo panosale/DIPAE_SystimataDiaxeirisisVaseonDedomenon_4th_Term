@@ -136,12 +136,12 @@ SELECT DISTINCT S.sid, S.sname FROM sailor S
 	JOIN marina M ON (M.mid = R.mid)
 	WHERE M.name = 'Ουρανούπολις';
 γ)
-SELECT DISTINCT S.sid, S.sname FROM sailor S
+SELECT S.sid, S.sname FROM sailor S
 	JOIN reservation R ON (R.sid = S.sid)
 	JOIN marina M ON (M.mid = R.mid)
 	WHERE M.name = 'Πόρτο Καρράς'
 INTERSECT
-SELECT DISTINCT S.sid, S.sname FROM sailor S
+SELECT S.sid, S.sname FROM sailor S
 	JOIN reservation R ON (R.sid = S.sid)
 	JOIN marina M ON (M.mid = R.mid)
 	WHERE M.name = 'Ουρανούπολις';
@@ -156,7 +156,7 @@ SELECT DISTINCT B.bid, B.bname FROM boat B
 SELECT B.bid, B.bname FROM boat B
 	JOIN reservation R ON (R.bid = B.bid)
 	JOIN marina M ON (M.mid = R.mid)
-	WHERE M.name = 'Ουρανούπολις';
+	WHERE M.name = 'Ουρανούπολις'
 UNION
 SELECT B.bid, B.bname FROM boat B
 	JOIN reservation R ON (R.bid = B.bid)
