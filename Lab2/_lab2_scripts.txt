@@ -190,6 +190,7 @@ SELECT S.sname AS "Sailor Name", B.bname AS "Boat name" FROM sailor S
 	WHERE M.name = 'Πόρτο Καρράς';
 
 /* Ερώτημα 26 */
+SELECT B1.bname, B1.color, B2.bname, B2.color FROM boat B1, boat B2 WHERE B1.color = B2.color AND B1.bid > B2.bid;
 
 /* Ερώτημα 27 */
 SELECT DISTINCT M.mid AS "Marina ID", M.name AS "Marina name", B.color AS "Boat color" FROM marina M
