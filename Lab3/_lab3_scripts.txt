@@ -23,3 +23,8 @@ SELECT teacher.name, COALESCE(teacher.mobile, '07986 444 2266')
  FROM teacher
 
 /* 6 */
+SELECT teacher.name, COALESCE(dept.name, 'None')
+FROM teacher
+LEFT OUTER JOIN dept
+           ON (teacher.dept=dept.id)
+
