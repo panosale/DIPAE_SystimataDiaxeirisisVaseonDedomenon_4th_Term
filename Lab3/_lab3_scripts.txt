@@ -1,3 +1,4 @@
+/* ΜΕΡΟΣ Α */
 /* SQL Zoo - https://sqlzoo.net/wiki/Using_Null */
 /* 1 */
 SELECT name, party
@@ -28,3 +29,31 @@ FROM teacher
 LEFT OUTER JOIN dept
            ON (teacher.dept=dept.id)
 
+
+/* ΜΕΡΟΣ Β */
+/* 2 */
+SELECT s.sid, s.sname FROM sailor s
+EXCEPT
+SELECT s.sid, s.sname FROM sailor s
+	JOIN reservation r on (s.sid = r.sid)
+	JOIN boat b on (b.bid = r.bid) WHERE b.color <> 'Red';
+
+/* 3 */
+SELECT S.sid AS "Sailor ID", S.sname AS "Sailor name" FROM reservation R JOIN boat B ON B.bid = R.bid AND B.color = 'Red'
+	RIGHT OUTER JOIN sailor S ON S.sid = R.sid
+	WHERE R.r_date IS NULL
+
+/* 4 */
+SELECT DISTINCT M.mid AS "Marina ID", M.name AS "Marina name" FROM marina M
+	JOIN reservation R ON (R.mid = M.mid)
+	JOIN boat B ON (B.bid = R.bid)
+	WHERE B.color = 'Red';
+/* Ή */
+SELECT DISTINCT M.mid AS "Marina ID", M.name AS "Marina name" FROM marina M
+	JOIN reservation R ON (R.mid = M.mid)
+	JOIN boat B ON (B.bid = R.bid AND B.color = 'Red')
+
+/* 5 */
+SELECT S.sid, S.sname FROM sailor S
+	LEFT OUTER JOIN reservation R ON S.sid = R.sid
+	WHERE R.bid IS NULL
