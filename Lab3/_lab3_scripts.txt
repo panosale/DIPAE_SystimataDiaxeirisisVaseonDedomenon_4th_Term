@@ -1,2 +1,25 @@
-/*  */
+/* SQL Zoo - https://sqlzoo.net/wiki/Using_Null */
+/* 1 */
+SELECT name, party
+      ,COALESCE(party,'None') AS aff
+  FROM msp WHERE name LIKE 'C%'
 
+/* 2 */
+SELECT teacher.name, dept.name
+ FROM teacher INNER JOIN dept
+           ON (teacher.dept=dept.id)
+
+/* 3 */
+SELECT teacher.name, dept.name
+ FROM teacher LEFT OUTER JOIN dept
+           ON (teacher.dept=dept.id)
+/* 4 */
+SELECT teacher.name, dept.name
+ FROM teacher RIGHT OUTER JOIN dept
+           ON (teacher.dept=dept.id)
+
+/* 5 */
+SELECT teacher.name, COALESCE(teacher.mobile, '07986 444 2266')
+ FROM teacher
+
+/* 6 */
