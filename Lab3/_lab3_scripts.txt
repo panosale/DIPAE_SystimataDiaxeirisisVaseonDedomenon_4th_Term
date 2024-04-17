@@ -60,7 +60,11 @@ SELECT a.company, a.num, stopa.name, stopb.name FROM route a
 	JOIN stops stopb ON (b.stop=stopb.id)
 WHERE stopa.name='Craiglockhart' AND stopb.name = 'London Road'
 
-/* 7 */
+/* 7 */ ΝΑ ΕΛΕΓΧΘΕΙ */
+select r.company, r.num  from route r
+join stops s1 ON (r.stop = s1.id)
+join stops s2 ON (r.stop = s2.id)
+where s1.id in (115, 137) or s2.id in (115, 137)
 
 /* 8 */
 
