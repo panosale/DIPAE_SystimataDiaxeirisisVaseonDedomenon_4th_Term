@@ -1,1 +1,16 @@
 
+-- 1
+SELECT * FROM keeper WHERE id = (SELECT keeper FROM vehicle WHERE id = 'SO 02 PSP')
+
+-- 2
+
+-- 3
+
+-- 4
+
+-- 5
+SELECT DISTINCT k.id, k.name, k.address FROM keeper k
+	JOIN vehicle v ON (k.id = v.keeper)
+	JOIN permit p ON (v.id = p.reg)
+	WHERE p.sdate = '2007-01-30'
+	ORDER BY 2
