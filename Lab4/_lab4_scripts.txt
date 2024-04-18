@@ -49,3 +49,11 @@ SELECT DISTINCT k.id, k.name, k.address FROM keeper k
 			JOIN vehicle v ON (k.id = v.keeper)
 			JOIN image i ON (v.id = i.reg)
 			WHERE i.camera = 5 )
+Ή
+SELECT DISTINCT k.id, k.name, k.address FROM keeper k
+	JOIN vehicle v ON (k.id = v.keeper)
+	JOIN image i ON (v.id = i.reg)
+	WHERE i.camera = 2 AND EXISTS (SELECT DISTINCT k1.id FROM keeper k1
+			JOIN vehicle v ON (k1.id = v.keeper)
+			JOIN image i ON (v.id = i.reg)
+			WHERE i.camera = 5 AND k.id = k1.id)
