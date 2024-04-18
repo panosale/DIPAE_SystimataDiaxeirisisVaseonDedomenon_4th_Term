@@ -13,4 +13,4 @@ SELECT DISTINCT k.id, k.name, k.address FROM keeper k
 	JOIN vehicle v ON (k.id = v.keeper)
 	JOIN permit p ON (v.id = p.reg)
 	WHERE p.sdate = '2007-01-30'
-	ORDER BY k.name
+	ORDER BY k.name DESC
