@@ -15,9 +15,12 @@
 π pizzeria ((σ gender='female' Person) ⨝ Frequents) -> Καλύτερα να γίνεται πρώτα Επιλογή και (σ) μετά Σύζευξη (⨝) επειδή πρώτα μειώνουμε το μέγεθος των πινάκων και μετά τους ενώνουμε. Η Σύζευξη χρειάζεται περισσότερους πόρους.
 
 4.1 Σε ποιές πιτσαρίες συχνάζουν αποκλειστικά γυναίκες-πελάτες;
-π pizzeria ((σ gender<>'male' Person) ⨝ Frequents)
+π pizzeria (σ gender='female' (Person) ⨝ (Frequents)) - π pizzeria (σ gender<>'female' (Person) ⨝ (Frequents))
+'Η
+π pizzeria (Frequents) - π pizzeria (σ gender='male' (Person) ⨝ (Frequents))
 
 5. Ποιές πίτσες σερβίρουν οι πιτσαρίες όπου συχνάζει η Fay;
+
 
 6. Στις πιτσαρίες όπου συχνάζει η Fay, ποιοί άλλοι/ες συχνάζουν;
 
