@@ -35,3 +35,10 @@
 π pizzeria ((σ name='Ben' (Frequents)) ∩ (σ name='Eli' (Frequents))) -> ΛΑΘΟΣ
 
 10. Πιτσαρίες στις οποίες θα μπορούσε να παραγγείλει έστω και μία από τις προτιμήσεις του ο κάθε ένας πελάτης (με ονόματα πινάκων: Protimisi, Ikanopoiei και ονόματα στηλών: Pelatis, Estiatorio, π.χ. βλέπε την εικόνα που ακολουθεί):
+
+
+
+
+16. Να βρεθούν ζεύγη πελατών που καταχωρεί ο πίνακας Person οι οποίοι/ες έχουν την ίδια ηλικία.
+		ρ Person1 (Person) ⨯ Person -> Μετονομασία πίνακα για να μπορέσω να τον κάνω Καρτεσιανό Γινόμενο με τον εαυτό του.
+π Person1.name, Person.name (σ (Person1.age = Person.age) ∧ ((Person1.name > Person.name)) (ρ Person1 (Person) ⨯ Person))
