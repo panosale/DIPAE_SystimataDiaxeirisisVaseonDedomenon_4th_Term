@@ -24,11 +24,14 @@
 π pizza (σ name='Fay' (Frequents ⨝ Serves))
 
 6. Στις πιτσαρίες όπου συχνάζει η Fay, ποιοί άλλοι/ες συχνάζουν;
+π name (σ name <> 'Fay' (π pizzeria (σ name='Fay' (Frequents)) ⨝ Frequents))
 
 7. Ποιές πιτσαρίες σερβίρουν πίτσα που προτιμά/παραγγέλνει ο Dan;
 
 8. Ποιές πιτσαρίες σερβίρουν πίτσα που τρώει ο Dan αλλά ο τελευταίος δεν συχνάζει σε αυτές;
 
 9. Σε ποιές πιτσαρίες συχνάζουν ΚΑΙ ο Ben ΚΑΙ η Eli;
+π pizzeria (σ name='Ben' (Frequents)) ∩ π pizzeria (σ name='Eli' (Frequents))
+π pizzeria ((σ name='Ben' (Frequents)) ∩ (σ name='Eli' (Frequents))) -> ΛΑΘΟΣ
 
 10. Πιτσαρίες στις οποίες θα μπορούσε να παραγγείλει έστω και μία από τις προτιμήσεις του ο κάθε ένας πελάτης (με ονόματα πινάκων: Protimisi, Ikanopoiei και ονόματα στηλών: Pelatis, Estiatorio, π.χ. βλέπε την εικόνα που ακολουθεί):
