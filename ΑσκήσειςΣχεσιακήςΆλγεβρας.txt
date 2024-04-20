@@ -2,11 +2,11 @@
 π pizzeria (Serves)
 
 2. Σε ποιές πιτσαρίες συχνάζει ο Dan;
-π pizzeria (σ name='Dan'  (Frequents))
+π pizzeria (σ name='Dan' (Frequents))
 
 3. Σε ποιές πιτσαρίες δεν συχνάζει η Fay;
-π pizzeria (σ name<>'Fay'  (Frequents)) -> ΛΑΘΟΣ
-π pizzeria (Serves) - π pizzeria (σ name='Fay'  (Frequents))
+π pizzeria (σ name<>'Fay' (Frequents)) -> ΛΑΘΟΣ
+π pizzeria (Serves) - π pizzeria (σ name='Fay' (Frequents))
 
 4. Σε ποιές πιτσαρίες συχνάζουν γυναίκες-πελάτες;
 π pizzeria (Frequents) ⨝ π name (σ gender='female' (Person))
@@ -20,7 +20,8 @@
 π pizzeria (Frequents) - π pizzeria (σ gender='male' (Person) ⨝ (Frequents))
 
 5. Ποιές πίτσες σερβίρουν οι πιτσαρίες όπου συχνάζει η Fay;
-
+π pizza (σ name='Fay' (Frequents) ⨝ Serves) -> Πιο αποδοτικό αφού κάνει πρώτα την Επιλογή (σ)
+π pizza (σ name='Fay' (Frequents ⨝ Serves))
 
 6. Στις πιτσαρίες όπου συχνάζει η Fay, ποιοί άλλοι/ες συχνάζουν;
 
