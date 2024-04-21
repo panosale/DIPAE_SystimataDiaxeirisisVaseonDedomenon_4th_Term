@@ -27,8 +27,11 @@
 π name (σ name <> 'Fay' (π pizzeria (σ name='Fay' (Frequents)) ⨝ Frequents))
 
 7. Ποιές πιτσαρίες σερβίρουν πίτσα που προτιμά/παραγγέλνει ο Dan;
+π pizzeria (σ name = 'Dan' (Eats) ⨝ Serves)
 
 8. Ποιές πιτσαρίες σερβίρουν πίτσα που τρώει ο Dan αλλά ο τελευταίος δεν συχνάζει σε αυτές;
+	Βήμα 1: π pizzeria (σ name ≠ 'Dan' (Frequents)) - π pizzeria (σ name = 'Dan' (Frequents)) ---> Δεν συχνάζει σε αυτές ο Dan
+	Βήμα 2: π pizzeria (σ name ≠ 'Dan' (Frequents)) - π pizzeria (σ name = 'Dan' (Frequents)) ∩ π pizzeria (σ name = 'Dan' (Eats) ⨝ Serves)
 
 9. Σε ποιές πιτσαρίες συχνάζουν ΚΑΙ ο Ben ΚΑΙ η Eli;
 π pizzeria (σ name='Ben' (Frequents)) ∩ π pizzeria (σ name='Eli' (Frequents))
