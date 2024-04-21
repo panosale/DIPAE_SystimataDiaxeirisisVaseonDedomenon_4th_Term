@@ -1,47 +1,83 @@
 1. Ποιές πιτσαρίες καταχωρεί η βάση του σχήματος UIBK-PS;
-π pizzeria (Serves)
+ΑΠΑΝΤΗΣΗ: π pizzeria (Serves)
 
 2. Σε ποιές πιτσαρίες συχνάζει ο Dan;
-π pizzeria (σ name='Dan' (Frequents))
+ΑΠΑΝΤΗΣΗ: π pizzeria (σ name='Dan' (Frequents))
 
 3. Σε ποιές πιτσαρίες δεν συχνάζει η Fay;
-π pizzeria (σ name<>'Fay' (Frequents)) -> ΛΑΘΟΣ
-π pizzeria (Serves) - π pizzeria (σ name='Fay' (Frequents))
+ΛΑΘΟΣ ΑΠΑΝΤΗΣΗ: π pizzeria (σ name<>'Fay' (Frequents))
+ΑΠΑΝΤΗΣΗ: π pizzeria (Serves) - π pizzeria (σ name='Fay' (Frequents))
 
 4. Σε ποιές πιτσαρίες συχνάζουν γυναίκες-πελάτες;
-π pizzeria (Frequents) ⨝ π name (σ gender='female' (Person))
-π pizzeria (σ gender='female' (Person ⨝ Frequents))
+ΑΠΑΝΤΗΣΗ: π pizzeria (Frequents) ⨝ π name (σ gender='female' (Person))
+ΑΠΑΝΤΗΣΗ: π pizzeria (σ gender='female' (Person ⨝ Frequents))
 ή
-π pizzeria ((σ gender='female' Person) ⨝ Frequents) -> Καλύτερα να γίνεται πρώτα Επιλογή και (σ) μετά Σύζευξη (⨝) επειδή πρώτα μειώνουμε το μέγεθος των πινάκων και μετά τους ενώνουμε. Η Σύζευξη χρειάζεται περισσότερους πόρους.
+ΑΠΑΝΤΗΣΗ: π pizzeria ((σ gender='female' Person) ⨝ Frequents) ---> Καλύτερα να γίνεται πρώτα Επιλογή και (σ) μετά Σύζευξη (⨝) επειδή πρώτα μειώνουμε το μέγεθος των πινάκων και μετά τους ενώνουμε. Η Σύζευξη χρειάζεται περισσότερους πόρους.
 
 4.1 Σε ποιές πιτσαρίες συχνάζουν αποκλειστικά γυναίκες-πελάτες;
-π pizzeria (σ gender='female' (Person) ⨝ (Frequents)) - π pizzeria (σ gender<>'female' (Person) ⨝ (Frequents))
+ΑΠΑΝΤΗΣΗ: π pizzeria (σ gender='female' (Person) ⨝ (Frequents)) - π pizzeria (σ gender<>'female' (Person) ⨝ (Frequents))
 'Η
 π pizzeria (Frequents) - π pizzeria (σ gender='male' (Person) ⨝ (Frequents))
 
 5. Ποιές πίτσες σερβίρουν οι πιτσαρίες όπου συχνάζει η Fay;
-π pizza (σ name='Fay' (Frequents) ⨝ Serves) -> Πιο αποδοτικό αφού κάνει πρώτα την Επιλογή (σ)
-π pizza (σ name='Fay' (Frequents ⨝ Serves))
+ΑΠΑΝΤΗΣΗ 1: π pizza (σ name='Fay' (Frequents) ⨝ Serves) -> Πιο αποδοτικό αφού κάνει πρώτα την Επιλογή (σ)
+ΑΠΑΝΤΗΣΗ 2: π pizza (σ name='Fay' (Frequents ⨝ Serves))
 
 6. Στις πιτσαρίες όπου συχνάζει η Fay, ποιοί άλλοι/ες συχνάζουν;
-π name (σ name <> 'Fay' (π pizzeria (σ name='Fay' (Frequents)) ⨝ Frequents))
+ΑΠΑΝΤΗΣΗ: π name (σ name <> 'Fay' (π pizzeria (σ name='Fay' (Frequents)) ⨝ Frequents))
 
 7. Ποιές πιτσαρίες σερβίρουν πίτσα που προτιμά/παραγγέλνει ο Dan;
-π pizzeria (σ name = 'Dan' (Eats) ⨝ Serves)
+ΑΠΑΝΤΗΣΗ: π pizzeria (σ name = 'Dan' (Eats) ⨝ Serves)
 
 8. Ποιές πιτσαρίες σερβίρουν πίτσα που τρώει ο Dan αλλά ο τελευταίος δεν συχνάζει σε αυτές;
+ΑΠΑΝΤΗΣΗ: 
 	Βήμα 1: π pizzeria (σ name ≠ 'Dan' (Frequents)) - π pizzeria (σ name = 'Dan' (Frequents)) ---> Δεν συχνάζει σε αυτές ο Dan
 	Βήμα 2: π pizzeria (σ name ≠ 'Dan' (Frequents)) - π pizzeria (σ name = 'Dan' (Frequents)) ∩ π pizzeria (σ name = 'Dan' (Eats) ⨝ Serves)
 
 9. Σε ποιές πιτσαρίες συχνάζουν ΚΑΙ ο Ben ΚΑΙ η Eli;
-π pizzeria (σ name='Ben' (Frequents)) ∩ π pizzeria (σ name='Eli' (Frequents))
-π pizzeria ((σ name='Ben' (Frequents)) ∩ (σ name='Eli' (Frequents))) -> ΛΑΘΟΣ
+ΑΠΑΝΤΗΣΗ: π pizzeria (σ name='Ben' (Frequents)) ∩ π pizzeria (σ name='Eli' (Frequents))
+ΛΑΘΟΣ ΑΠΑΝΤΗΣΗ: π pizzeria ((σ name='Ben' (Frequents)) ∩ (σ name='Eli' (Frequents)))
 
 10. Πιτσαρίες στις οποίες θα μπορούσε να παραγγείλει έστω και μία από τις προτιμήσεις του ο κάθε ένας πελάτης (με ονόματα πινάκων: Protimisi, Ikanopoiei και ονόματα στηλών: Pelatis, Estiatorio, π.χ. βλέπε την εικόνα που ακολουθεί):
+ΑΠΑΝΤΗΣΗ: π name → Pelatis, pizzeria → Estiatorio (ρ Protimisi (Eats) ⨝ ρ Ikanopoiei (Serves))
 
+11. Θέλουμε να υπολογίσουμε/εμφανίσουμε τις πιτσαρίες που επισκέπτονται οι πελάτες και τις
+πίτσες που παραγγέλνουν σε αυτές:
+(α) Eats⨝Frequents
+(β) (Eats⨝Frequents) ⨝ (πpizzeria,pizza (Serves))
+(γ) πpizzeria,pizza,name (Serves ⨝ Eats) ⨝ Frequents
+(δ) (πpizzeria,pizza (Serves) ⨝ Frequents) ⨝ Eats
+(ε) πname,Serves.pizzeria,pizza ((Frequents ⨯ Serves)⨝Eats)
+Ποιά(ές) από τις παραπάνω παραστάσεις υπολογίζει(ουν) ΠΑΝΤΑ το σωστό αποτέλεσμα;
+Αιτιολογήστε τις απαντήσεις σας.
 
+12. Θέλουμε να υπολογίσουμε/εμφανίσουμε τις πιτσαρίες που σερβίρουν πίτσα που παραγγέλνει ο
+Dan και συχνάζει σε αυτές η Fay:
+(α) πFrequents.pizzeria (σFrequents.name='Fay' ((σname='Dan' Eats) ⨯ Frequents))
+(β) πpizzeria (σname='Fay' ((πpizzeria (πpizza (σname='Dan' Eats) ⨝ Serves)) ⨝ Frequents))
+(γ) πpizzeria (σname='Fay' (Serves⨝Eats⨝Frequents) ∩ σname='Dan'(Serves⨝Eats⨝Frequents))
+(δ) πpizzeria (σname='Fay' ((πpizzeria (Serves ⨝ σname='Dan' Eats))⨝Frequents))
+(ε) (πpizzeria (Serves ⨝ σname='Dan' Eats)) ⨝ πpizzeria (σname='Fay' Frequents)
+(στ) (πpizzeria (Serves ⨝ σname='Dan' Eats)) ∩ πpizzeria (σname='Fay' Frequents)
+Ποιά(ές) από τις παραπάνω παραστάσεις υπολογίζει(ουν) ΠΑΝΤΑ το σωστό αποτέλεσμα; Αν
+συμβαίνει οι σωστές παραστάσεις να είναι περισσότερες από μία, πως θα σχολιάζατε τις
+(αναμενόμενες) επιδόσεις τους;
+Αιτιολογήστε τις απαντήσεις σας.
 
+13. Θέλουμε να υπολογίσουμε/εμφανίσουμε τις πιτσαρίες που σερβίρουν ΟΛΑ τα είδη πίτσας που
+παραγγέλνει η Amy. Να υπολογιστεί το αποτέλεσμα με τη χρήση του τελεστή της διαίρεσης.
+ΑΠΑΝΤΗΣΗ: 
+
+14. Να υπολογιστεί το αποτέλεσμα του παραπάνω (13) με τη χρήση βασικών τελεστών της Σ.Α.,
+χωρίς να χρησιμοποιηθεί ο τελεστής της διαίρεσης.
+ΑΠΑΝΤΗΣΗ: 
+
+15. Να διατυπωθεί ερώτηση της οποία η απάντηση υπολογίζεται με διαίρεση, ανάλογα με εκείνη
+της παραπάνω άσκησης 13. Στη συνέχεια, να υπολογιστεί το επιθυμητό αποτέλεσμα (α) με
+διαίρεση, και (β) με ισοδύναμη παράσταση βασικών τελεστών Σ.Α., όπως στην άσκηση (14).
+ΑΠΑΝΤΗΣΗ: 
 
 16. Να βρεθούν ζεύγη πελατών που καταχωρεί ο πίνακας Person οι οποίοι/ες έχουν την ίδια ηλικία.
-		ρ Person1 (Person) ⨯ Person -> Μετονομασία πίνακα για να μπορέσω να τον κάνω Καρτεσιανό Γινόμενο με τον εαυτό του.
-π Person1.name, Person.name (σ (Person1.age = Person.age) ∧ ((Person1.name > Person.name)) (ρ Person1 (Person) ⨯ Person))
+ΑΠΑΝΤΗΣΗ: 
+	Βήμα 1: ρ Person1 (Person) ⨯ Person ---> Μετονομασία πίνακα για να μπορέσω να τον κάνω Καρτεσιανό Γινόμενο με τον εαυτό του.
+	Βήμα 2: π Person1.name, Person.name (σ (Person1.age = Person.age) ∧ ((Person1.name > Person.name)) (ρ Person1 (Person) ⨯ Person))
