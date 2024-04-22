@@ -1,8 +1,13 @@
 
 -- 1
 SELECT * FROM keeper WHERE id = (SELECT keeper FROM vehicle WHERE id = 'SO 02 PSP')
+Ή
+SELECT k.id, k.name, k.address FROM keeper AS k 
+	JOIN vehicle AS v ON (k.id = v.keeper)
+	WHERE v.id = 'SO 02 PSP'
 
 -- 2
+SELECT COUNT(c.id) FROM camera AS c WHERE perim = 'IN'
 
 -- 3
 
