@@ -1,17 +1,19 @@
 
--- 1
+-- 1. Να συνταχθεί κώδικας SQL SELECT που υπολογίζει τα στοιχεία του ιδιοκτήτη του οχήματος με κωδικό 'SO 02 PSP'.
 SELECT * FROM keeper WHERE id = (SELECT keeper FROM vehicle WHERE id = 'SO 02 PSP')
 Ή
 SELECT k.id, k.name, k.address FROM keeper AS k 
 	JOIN vehicle AS v ON (k.id = v.keeper)
 	WHERE v.id = 'SO 02 PSP'
 
--- 2
-SELECT COUNT(c.id) FROM camera AS c WHERE perim = 'IN'
+-- 2. Να υπολογιστεί ο αριθμός (πλήθος) των καμερών που καταγράφουν οχήματα που εισέρχονται (ΙΝ) στο δακτύλιο.
+SELECT COUNT(c.id) AS "Number of IN cameras" FROM camera AS c WHERE perim = 'IN'
 
--- 3
+-- 3. Να εμφανιστούν τα στοιχεία των φωτογραφιών που έχει καταγράψει η κάμερα με κωδικό 10 πριν την 28η Φεβρουαρίου 2007.
+SELECT * FROM image AS i
+	WHERE camera = 10 AND whn < '2007-02-28';
 
--- 4
+-- 4. Να εμφανιστούν οι αριθμοί κυκλοφορίας των αυτοκινήτων τα οποία φωτογραφήθηκαν και επαναφωτογραφήθηκαν εκ νέου από την ίδια ή από διαφορετικές κάμερα(-ες) μέσα σε διάστημα μικρότερο ή ίσο του ενός λεπτού.
 
 -- 5
 SELECT DISTINCT k.id, k.name, k.address FROM keeper k
