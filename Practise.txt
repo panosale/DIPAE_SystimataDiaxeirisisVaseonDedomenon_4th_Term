@@ -1,0 +1,12 @@
+-- Εξάσκηση από την σελίδα 26 της παρουσίασης 7_SQL.pdf
+CREATE SCHEMA PracticeSchema1;
+
+DROP TABLE IF EXISTS PracticeSchema1.student;
+DROP TABLE IF EXISTS PracticeSchema1.class;
+DROP TABLE IF EXISTS PracticeSchema1.enrolled;
+DROP TABLE IF EXISTS PracticeSchema1.faculty;
+	
+CREATE TABLE PracticeSchema1.student (snum INT NOT NULL CONSTRAINT p_key_snum PRIMARY KEY, sname VARCHAR[50], major VARCHAR[50], level VARCHAR[50], age INT);
+CREATE TABLE PracticeSchema1.class (name VARCHAR[50] NOT NULL CONSTRAINT p_key_cname PRIMARY KEY, meets_at time, room VARCHAR[50], fid INT);
+CREATE TABLE PracticeSchema1.enrolled (snum VARCHAR[50], cname INT, CONSTRAINT p_key_snum_cname PRIMARY KEY(snum, cname));
+CREATE TABLE PracticeSchema1.faculty (fid INT NOT NULL CONSTRAINT p_key_fid PRIMARY KEY, fname VARCHAR[50], deptid INT);
