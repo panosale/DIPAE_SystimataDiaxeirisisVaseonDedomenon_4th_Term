@@ -48,7 +48,7 @@ SELECT DISTINCT k.id, k.name, k.address FROM keeper k
 	WHERE i.camera = 5
 
 
--- 8
+-- 8. Τα στοιχεία των πολιτών (μία φορά ο κάθε ένας πολίτης στο αποτέλεσμα) οχήματα των οποίων έχουν καταγραφεί και από την κάμερα με κωδικό 2, και από την κάμερα με κωδικό 5. Το αποτέλεσμα να υπολογιστεί με τη χρήση του EXISTS.
 SELECT DISTINCT k.id, k.name, k.address FROM keeper k
 	JOIN vehicle v ON (k.id = v.keeper)
 	JOIN image i ON (v.id = i.reg)
