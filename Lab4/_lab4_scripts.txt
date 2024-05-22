@@ -15,18 +15,18 @@ SELECT * FROM image AS i
 
 -- 4. Να εμφανιστούν οι αριθμοί κυκλοφορίας των αυτοκινήτων τα οποία φωτογραφήθηκαν και επαναφωτογραφήθηκαν εκ νέου από την ίδια ή από διαφορετικές κάμερα(-ες) μέσα σε διάστημα μικρότερο ή ίσο του ενός λεπτού.
 
--- 5
+-- 5. Να εμφανιστεί το σύνολο των στοιχείων των ιδιοκτητών οχημάτων των οποίων οι άδειες/πάσσο εκδόθηκαν την 30η Ιανουαρίου 2007, μία μόνον φορά ο κάθε ένας ιδιοκτήτης και ταξινομημένα κατά φθίνουσα τάξη ως προς το όνομα του ιδιοκτήτη.
 SELECT DISTINCT k.id, k.name, k.address FROM keeper k
 	JOIN vehicle v ON (k.id = v.keeper)
 	JOIN permit p ON (v.id = p.reg)
 	WHERE p.sdate = '2007-01-30'
 	ORDER BY k.name DESC
 
--- 6
+-- 6. Τα στοιχεία των πολιτών (μία φορά ο κάθε ένας πολίτης στο αποτέλεσμα) οχήματα των οποίων έχουν καταγραφεί και από την κάμερα με κωδικό 2, και από την κάμερα με κωδικό 5. Το αποτέλεσμα να υπολογιστεί με τη χρήση του IN.
 SELECT DISTINCT k.id, k.name, k.address FROM keeper k
 	JOIN vehicle v ON (k.id = v.keeper)
 	JOIN image i ON (v.id = i.reg)
-	WHERE i.camera IN (1, 2, 5)
+	WHERE i.camera IN (2, 5)
 Ή
 SELECT DISTINCT k.id, k.name, k.address FROM keeper k
 	JOIN vehicle v ON (k.id = v.keeper)
@@ -36,7 +36,7 @@ SELECT DISTINCT k.id, k.name, k.address FROM keeper k
 			JOIN image i ON (v.id = i.reg)
 			WHERE i.camera = 5)
 
--- 7
+-- 7. Τα στοιχεία των πολιτών (μία φορά ο κάθε ένας πολίτης στο αποτέλεσμα) οχήματα των οποίων έχουν καταγραφεί και από την κάμερα με κωδικό 2, και από την κάμερα με κωδικό 5. Το αποτέλεσμα να υπολογιστεί με τη χρήση του INTERSECT.
 SELECT DISTINCT k.id, k.name, k.address FROM keeper k
 	JOIN vehicle v ON (k.id = v.keeper)
 	JOIN image i ON (v.id = i.reg)
