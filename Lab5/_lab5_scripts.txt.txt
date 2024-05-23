@@ -8,7 +8,7 @@ SELECT v.id FROM vehicle v
 	(SELECT c.id FROM camera c WHERE perim is NULL
 	EXCEPT
 	SELECT i.camera FROM image i WHERE i.reg = v.id)
-ΕΝΑΛΛΑΚΤΙΚΑ
+ΕΝΑΛΛΑΚΤΙΚΑ:
 SELECT DISTINCT(i1.reg) FROM image i1
 	WHERE NOT EXISTS 
 	(SELECT c.id FROM camera c WHERE perim is NULL
