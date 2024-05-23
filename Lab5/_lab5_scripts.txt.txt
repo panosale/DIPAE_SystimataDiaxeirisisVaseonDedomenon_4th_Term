@@ -53,12 +53,17 @@ SELECT v.id FROM vehicle v
 -- 3. Πλήθος ενοικιάσεων μπλε (‘Blue’) σκαφών ανά έτος, με ταξινόμηση ως προς το έτος, κατά φθίνουσα τάξη.
 
 -- 4. Μαρίνες (κωδικός και όνομα) από τις οποίες έχουν νοικιαστεί/παραληφθεί όλα ανεξαιρέτως τα σκάφη χρώματος κόκκινου ('Red').
-ΑΠΑΝΤΗΣΗ:
+ΑΠΑΝΤΗΣΗ: Με EXCEPT
 SELECT m.mid, m.name FROM marina m
 	WHERE NOT EXISTS 
 	(SELECT b.bid FROM boat b WHERE b.color = 'Red'
 	EXCEPT
 	SELECT r.bid FROM reservation r WHERE r.mid = m.mid)
+ΕΝΑΛΛΑΚΤΙΚΑ: Με 2 ΑΡΝΗΣΕΙΣ
+SELECT m.mid, m.name FROM marina m
+	WHERE NOT EXISTS 
+	(SELECT b.bid FROM boat b WHERE b.color = 'Red' AND NOT EXISTS
+	(SELECT r.bid FROM reservation r WHERE r.mid = m.mid AND r.bid = b.bid))
 
 -- 5. Οι περισσότερες ενοικιάσεις κόκκινων (‘Red’) σκαφών ανά έτος.
 Σημείωση: η άσκηση να λυθεί και με τη δημιουργία κατάλληλης όψης (View).
