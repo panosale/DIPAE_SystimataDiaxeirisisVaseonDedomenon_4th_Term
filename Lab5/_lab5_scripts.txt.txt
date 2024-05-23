@@ -34,6 +34,12 @@ SELECT DISTINCT(i1.reg) FROM image i1
 
 -- 3. Το αυτοκίνητο ή τα αυτοκίνητα που έχουν φωτογραφηθεί ΑΠΟ ΟΛΕΣ τις κάμερες οι οποίες δεν έχουν (ακόμη) χαρακτηριστεί να είναι κάμερες εισόδου (IN) ή κάμερες εξόδου (OUT) στο δακτύλιο.
 Απαίτηση: να χρησιμοποιηθεί η συνιστώσα σύνταξης GROUP BY … HAVING και να ΜΗΝ χρησιμοποιηθούν οι τελεστές EXCEPT ή/και (NOT) EXISTS
+ΛΥΣΗ: Με τη χρήση προσωρινού VIEW
+WITH tmp AS (SELECT v.id as vehicleid, c.id as cameraid FROM vehicle v 
+	JOIN image i ON (i.reg = v.id) 
+	JOIN camera c ON (i.camera = c.id) WHERE c.perim IS NULL) 
+	SELECT vehicleid FROM tmp
+	GROUP BY vehicleid HAVING COUNT(DISTINCT cameraid) = (SELECT COUNT(*) FROM camera c2 WHERE c2.perim IS NULL)
 
 -- 4. Το αυτοκίνητο ή τα αυτοκίνητα που έχουν φωτογραφηθεί ΑΠΟ ΟΛΕΣ τις κάμερες οι οποίες δεν έχουν (ακόμη) χαρακτηριστεί να είναι κάμερες εισόδου (IN) ή κάμερες εξόδου (OUT) στο δακτύλιο.
 Απαίτηση: το αποτέλεσμα να υπολογιστεί χωρίς την χρήση των GROUP BY … HAVING ή/και EXCEPT ή/και (NOT) EXISTS
