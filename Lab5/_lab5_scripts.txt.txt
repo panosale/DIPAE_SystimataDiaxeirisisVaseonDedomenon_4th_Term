@@ -24,6 +24,14 @@ SELECT v.id FROM vehicle v
 	(SELECT * FROM camera c
 		WHERE perim IS NULL AND NOT EXISTS 
 		(SELECT * FROM image i WHERE v.id = i.reg AND c.id = i.camera))
+ΕΝΑΛΛΑΚΤΙΚΑ:
+SELECT DISTINCT(i1.reg) FROM image i1
+	WHERE NOT EXISTS 
+	(SELECT c.id FROM camera c 
+	WHERE c.perim IS NULL 
+	AND NOT EXISTS
+	(SELECT i2.camera FROM image i2
+	WHERE i1.reg = i2.reg AND c.id = i2.camera))
 ΕΞΗΓΗΣΗ: Δεν υπάρχει κάμερα που να μην έχει φωτογραφίσει αυτοκίνητο.
 
 -- 3. Το αυτοκίνητο ή τα αυτοκίνητα που έχουν φωτογραφηθεί ΑΠΟ ΟΛΕΣ τις κάμερες οι οποίες δεν έχουν (ακόμη) χαρακτηριστεί να είναι κάμερες εισόδου (IN) ή κάμερες εξόδου (OUT) στο δακτύλιο.
