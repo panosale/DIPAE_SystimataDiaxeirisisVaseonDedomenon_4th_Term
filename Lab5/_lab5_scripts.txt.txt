@@ -72,7 +72,19 @@ SELECT m.mid, m.name FROM marina m
 
 -- 5. Οι περισσότερες ενοικιάσεις κόκκινων (‘Red’) σκαφών ανά έτος.
 Σημείωση: η άσκηση να λυθεί και με τη δημιουργία κατάλληλης όψης (View).
-
+ΛΥΣΗ: 
+SELECT MAX(W.r_count) FROM
+(SELECT COUNT(*) AS r_count, EXTRACT(YEAR FROM r.r_date) AS ryear FROM reservation r
+JOIN boat b ON (r.bid = b.bid)
+	WHERE b.color = 'Red'
+GROUP BY ryear) AS W
+ΜΕ ΔΗΜΙΟΥΡΓΙΑ ΤΟΥ VIEW:
+CREATE VIEW rescount AS	
+(SELECT COUNT(*) AS r_count, EXTRACT(YEAR FROM r.r_date) AS ryear FROM reservation r
+JOIN boat b ON (r.bid = b.bid)
+	WHERE b.color = 'Red'
+GROUP BY ryear)
+SELECT MAX(r_count) FROM rescount
 -- 6. Αριθμός ενοικιάσεων χρώματος σκάφους ανά έτος, με ταξινόμηση ως προς το χρώμα και για το ίδιο χρώμα ως προς το έτος, κατά φθίνουσα τάξη.
 
 -- 7. Χρώμα(-τα) στο(-α) οποίo(-α) αντιστοιχεί το μεγαλύτερο πλήθος ενοικιάσεων σκαφών, γενικά.
