@@ -8,6 +8,12 @@ SELECT v.id FROM vehicle v
 	(SELECT c.id FROM camera c WHERE perim is NULL
 	EXCEPT
 	SELECT i.camera FROM image i WHERE i.reg = v.id)
+ΕΝΑΛΛΑΚΤΙΚΑ
+SELECT DISTINCT(i1.reg) FROM image i1
+	WHERE NOT EXISTS 
+	(SELECT c.id FROM camera c WHERE perim is NULL
+	EXCEPT
+	SELECT i2.camera FROM image i2 WHERE i2.reg = i1.reg)
 
 -- 2. Το αυτοκίνητο ή τα αυτοκίνητα που έχουν φωτογραφηθεί ΑΠΟ ΟΛΕΣ τις κάμερες οι οποίες δεν έχουν (ακόμη) χαρακτηριστεί να είναι κάμερες εισόδου (IN) ή κάμερες εξόδου (OUT) στο δακτύλιο.
 Απαίτηση: να ΜΗΝ χρησιμοποιηθεί ο τελεστής EXCEPT. Να λυθεί με διπλή άρνηση.
