@@ -69,6 +69,9 @@ SELECT b.bname, b.bid, EXTRACT(YEAR FROM r.r_date) AS ryear FROM reservation r
 	HAVING COUNT(r.*) >= 2
 
 -- 3. Πλήθος ενοικιάσεων μπλε (‘Blue’) σκαφών ανά έτος, με ταξινόμηση ως προς το έτος, κατά φθίνουσα τάξη.
+SELECT b.bname, b.bid, b.color, COUNT(r.*), EXTRACT(YEAR FROM r.r_date) AS ryear FROM reservation r
+	JOIN boat b ON (r.bid = b.bid)  WHERE b.color = 'Blue'
+	GROUP BY b.bid, b.bname, ryear ORDER BY COUNT(r.*) DESC
 
 -- 4. Μαρίνες (κωδικός και όνομα) από τις οποίες έχουν νοικιαστεί/παραληφθεί όλα ανεξαιρέτως τα σκάφη χρώματος κόκκινου ('Red').
 -- ΛΥΣΗ: Με EXCEPT
@@ -96,9 +99,14 @@ CREATE VIEW rescount AS
 (SELECT COUNT(*) AS r_count, EXTRACT(YEAR FROM r.r_date) AS ryear FROM reservation r
 JOIN boat b ON (r.bid = b.bid)
 	WHERE b.color = 'Red'
-GROUP BY ryear)
+GROUP BY ryear);
+-- ΕΚΤΕΛΕΣΗ ΤΟΥ VIEW
 SELECT MAX(r_count) FROM rescount
+
 -- 6. Αριθμός ενοικιάσεων χρώματος σκάφους ανά έτος, με ταξινόμηση ως προς το χρώμα και για το ίδιο χρώμα ως προς το έτος, κατά φθίνουσα τάξη.
+SELECT b.bname, b.color, EXTRACT(YEAR FROM r.r_date) AS rent_year, COUNT(b.color) FROM boat b
+	JOIN reservation r ON (b.bid = r.bid)
+	GROUP BY b.bname, b.color, rent_year ORDER BY b.color, rent_year DESC;
 
 -- 7. Χρώμα(-τα) στο(-α) οποίo(-α) αντιστοιχεί το μεγαλύτερο πλήθος ενοικιάσεων σκαφών, γενικά.
 -- Σημείωση: η άσκηση να λυθεί και με τη δημιουργία κατάλληλης όψης (View).
