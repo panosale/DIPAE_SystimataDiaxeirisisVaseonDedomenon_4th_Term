@@ -109,8 +109,20 @@ SELECT b.bname, b.color, EXTRACT(YEAR FROM r.r_date) AS rent_year, COUNT(b.color
 	GROUP BY b.bname, b.color, rent_year ORDER BY b.color, rent_year DESC;
 
 -- 7. Χρώμα(-τα) στο(-α) οποίo(-α) αντιστοιχεί το μεγαλύτερο πλήθος ενοικιάσεων σκαφών, γενικά.
+-- ΛΥΣΗ: ΘΕΛΕΙ ΔΙΟΡΘΩΣΗ
+SELECT b.color, COUNT(b.color) AS color_count FROM boat b
+	JOIN reservation r ON (b.bid = r.bid)
+	GROUP BY b.color ORDER BY color_count
 -- Σημείωση: η άσκηση να λυθεί και με τη δημιουργία κατάλληλης όψης (View).
+-- ΛΥΣΗ: ΕΙΝΑΙ ΜΕ ΠΡΟΣΩΡΙΝΉ ΟΨΗ. ΘΕΛΕΙ ΔΙΟΡΘΩΣΗ
+WITH tmp AS (
+SELECT b.color, COUNT(b.color) AS color_count FROM boat b
+	JOIN reservation r ON (b.bid = r.bid)
+	GROUP BY b.color)
+SELECT t.color, MAX(t.color_count) AS max_count_color FROM tmp t
+	GROUP BY t.color ORDER BY max_count_color DESC;
 
+	
 -- 8. Το χρώμα ή τα χρώματα με τις περισσότερες κρατήσεις ανά έτος, σε σχέση με όλα τα υπόλοιπα χρώματα και έτη που καταχωρεί η βάση.
 -- Προσοχή: ζητείται το χρώμα “νικητής” για όλα τα έτη που καταχωρεί η βάση, όχι το χρώμα με τις περισσότερες κρατήσεις στο κάθε ένα έτος.
 -- Σημείωση: η άσκηση να λυθεί και με τη δημιουργία κατάλληλης όψης (View).
