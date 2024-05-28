@@ -91,7 +91,7 @@ SELECT MAX(W.r_count) FROM
 JOIN boat b ON (r.bid = b.bid)
 	WHERE b.color = 'Red'
 GROUP BY ryear) AS W
-ΜΕ ΔΗΜΙΟΥΡΓΙΑ ΤΟΥ VIEW:
+-- ΜΕ ΔΗΜΙΟΥΡΓΙΑ ΤΟΥ VIEW:
 CREATE VIEW rescount AS	
 (SELECT COUNT(*) AS r_count, EXTRACT(YEAR FROM r.r_date) AS ryear FROM reservation r
 JOIN boat b ON (r.bid = b.bid)
