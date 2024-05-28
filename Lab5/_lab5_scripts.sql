@@ -40,7 +40,7 @@ WITH tmp AS (SELECT v.id as vehicleid, c.id as cameraid FROM vehicle v
 	JOIN camera c ON (i.camera = c.id) WHERE c.perim IS NULL) 
 	SELECT vehicleid FROM tmp
 	GROUP BY vehicleid HAVING COUNT(DISTINCT cameraid) = (SELECT COUNT(*) FROM camera c2 WHERE c2.perim IS NULL)
-Ή
+-- ΕΝΑΛΛΑΚΤΙΚΑ:
 SELECT DISTINCT V.id FROM Vehicle V 
 	WHERE V.id IN (SELECT I.reg FROM Image I JOIN Camera C1 ON (C1.id=I.camera) 
 		WHERE C1.perim IS NULL
