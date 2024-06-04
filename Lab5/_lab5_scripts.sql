@@ -104,6 +104,7 @@ GROUP BY ryear);
 SELECT MAX(r_count) FROM rescount
 
 -- 6. Αριθμός ενοικιάσεων χρώματος σκάφους ανά έτος, με ταξινόμηση ως προς το χρώμα και για το ίδιο χρώμα ως προς το έτος, κατά φθίνουσα τάξη.
+-- ΛΥΣΗ: 
 SELECT b.bname, b.color, EXTRACT(YEAR FROM r.r_date) AS rent_year, COUNT(b.color) FROM boat b
 	JOIN reservation r ON (b.bid = r.bid)
 	GROUP BY b.bname, b.color, rent_year ORDER BY b.color, rent_year DESC;
