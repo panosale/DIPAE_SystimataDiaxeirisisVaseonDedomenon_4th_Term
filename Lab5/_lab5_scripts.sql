@@ -57,22 +57,22 @@ SELECT DISTINCT V.id FROM Vehicle V
 -- Γίνεται χρήση της σχεσιακής βάσης δεδομένων των ναυτικών/σκαφών/μαρίνων
 -- 1. Σκάφη των οποίων έχουν γίνει δύο ή περισσότερες κρατήσεις. Να εμφανιστούν ο κωδικός και ο συνολικός αριθμός των κρατήσεων που έχουν γίνει για το κάθε ένα σκάφος.
 -- ΛΥΣΗ:
-SELECT r.bid, COUNT(r.bid) FROM reservation r
+SELECT r.bid, COUNT(*) FROM reservation r
 GROUP BY r.bid
-HAVING COUNT(r.bid) >= 2
+HAVING COUNT(r.bid) > 1
 
 -- 2. Σκάφη (κωδικός και όνομα) τα οποία νοικιάστηκαν τουλάχιστον δύο φορές το ίδιο έτος.
 -- ΛΥΣΗ:
-SELECT b.bname, b.bid, EXTRACT(YEAR FROM r.r_date) AS ryear FROM reservation r
+SELECT DISTINCT b.bname, b.bid FROM reservation r
 	JOIN boat b ON (r.bid = b.bid)
-	GROUP BY b.bid, b.bname, ryear
-	HAVING COUNT(r.*) >= 2
+	GROUP BY b.bid, b.bname, EXTRACT(YEAR FROM r.r_date) 
+	HAVING COUNT(*) > 1
 
 -- 3. Πλήθος ενοικιάσεων μπλε (‘Blue’) σκαφών ανά έτος, με ταξινόμηση ως προς το έτος, κατά φθίνουσα τάξη.
-SELECT b.bname, b.bid, b.color, COUNT(r.*), EXTRACT(YEAR FROM r.r_date) AS ryear FROM reservation r
+SELECT COUNT(r.sid), EXTRACT(YEAR FROM r.r_date) AS ryear FROM reservation r
 	JOIN boat b ON (r.bid = b.bid)  WHERE b.color = 'Blue'
-	GROUP BY b.bid, b.bname, ryear ORDER BY COUNT(r.*) DESC
-
+	GROUP BY ryear ORDER BY ryear DESC
+	
 -- 4. Μαρίνες (κωδικός και όνομα) από τις οποίες έχουν νοικιαστεί/παραληφθεί όλα ανεξαιρέτως τα σκάφη χρώματος κόκκινου ('Red').
 -- ΛΥΣΗ: Με EXCEPT
 SELECT m.mid, m.name FROM marina m
@@ -89,19 +89,19 @@ SELECT m.mid, m.name FROM marina m
 -- 5. Οι περισσότερες ενοικιάσεις κόκκινων (‘Red’) σκαφών ανά έτος.
 -- Σημείωση: η άσκηση να λυθεί και με τη δημιουργία κατάλληλης όψης (View).
 -- ΛΥΣΗ: 
-SELECT MAX(W.r_count) FROM
+SELECT MAX(w.r_count) FROM
 (SELECT COUNT(*) AS r_count, EXTRACT(YEAR FROM r.r_date) AS ryear FROM reservation r
 JOIN boat b ON (r.bid = b.bid)
 	WHERE b.color = 'Red'
-GROUP BY ryear) AS W
+GROUP BY ryear) AS w
 -- ΜΕ ΔΗΜΙΟΥΡΓΙΑ ΤΟΥ VIEW:
-CREATE VIEW rescount AS	
+CREATE VIEW redcount_per_year AS	
 (SELECT COUNT(*) AS r_count, EXTRACT(YEAR FROM r.r_date) AS ryear FROM reservation r
 JOIN boat b ON (r.bid = b.bid)
 	WHERE b.color = 'Red'
 GROUP BY ryear);
 -- ΕΚΤΕΛΕΣΗ ΤΟΥ VIEW
-SELECT MAX(r_count) FROM rescount
+SELECT MAX(r_count) FROM redcount_per_year
 
 -- 6. Αριθμός ενοικιάσεων χρώματος σκάφους ανά έτος, με ταξινόμηση ως προς το χρώμα και για το ίδιο χρώμα ως προς το έτος, κατά φθίνουσα τάξη.
 -- ΛΥΣΗ: 
