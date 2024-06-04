@@ -162,8 +162,36 @@ CREATE VIEW PCS AS
 	);
 
 -- 12. Χρησιμοποιήστε τα παραπάνω (ίσως: δημιουργώντας ακόμη μία όψη) για να υπολογίσετε τα στοιχεία των ναυτικών των οποίων η ηλικία παρουσιάζει τον μεγαλύτερο μέσο αριθμό ενοικιάσεων σκαφών από τη Μαρίνα ‘Πόρτο Καρράς’ . Έχοντας ολοκληρώσει με τη λύση της άσκησης, αναλογιστείτε το βαθμό δυσκολίας που θα χαρακτήριζε την τελευταία στην περίπτωση που δεν ήταν δυνατή η δημιουργία και η χρήση όψεων.
--- ΛΥΣΗ: 
+-- ΛΥΣΗ: ΜΕ ΠΡΟΣΩΡΙΝΟ VIEW
+WITH tmp_avg_age AS (
+	SELECT age, AVG(COUNT) as avg_age FROM PCS
+	GROUP BY age
+	)
+	SELECT * FROM sailor WHERE age = (SELECT age FROM tmp_avg_age WHERE avg_age = (SELECT MAX(avg_age) FROM tmp_avg_age))
 
 -- 13. Να απαντηθούν τα των παραπάνω ασκήσεων 9,10,11 και 12 χωρίς τη δημιουργία (μόνιμων) όψεων, αλλά με τη χρήση της συνιστώσας σύνταξης WITH…. SELECT… (δηλ. με όψεις βραχείας διάρκειας).
 -- ΛΥΣΗ: 
+-- η 9 (ΘΕΛΕΙ ΔΙΟΡΘΩΣΗ)
+WITH tmp9 AS 
+	(
+	SELECT s.*, b.* FROM reservation r
+	JOIN boat b ON (r.bid = b.bid)
+	JOIN sailor s ON (r.sid = s.sid)
+	JOIN marina m ON (r.mid = m.mid)
+	WHERE m.name = 'Πόρτο Καρράς'
+	)
+	SELECT * FROM tmp9;
+
+-- η 10
+WITH tmp10 AS (SELECT COUNT(DISTINCT bid) FROM PC) SELECT * FROM tmp10;
+
+-- η 11
+WITH tmp11 AS 
+	(
+	SELECT sid, sname, rating, age, COUNT(*) FROM PC
+	GROUP BY sid, sname, rating, age
+	UNION
+	SELECT s1.sid, s1.sname, s1.rating, s1.age, 0 FROM sailor s1
+	WHERE s1.sid NOT IN (SELECT PC.sid FROM PC)
+	) SELECT * FROM tmp11;
 
